@@ -1,0 +1,6 @@
+export type { ApiError } from '@/types/api'
+export type { CartItem, CartLine } from '@/types/cart'
+export type { CatalogFilters, PaginatedResult } from '@/types/catalog'
+export { DEFAULT_CATALOG_FILTERS } from '@/types/catalog'
+export type { Category } from '@/types/category'
+export type { Product, ProductId, ProductSpecs } from '@/types/product'

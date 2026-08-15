@@ -1,0 +1,8 @@
+export { CartPage } from '@/pages/CartPage'
+export { CatalogPage } from '@/pages/CatalogPage'
+export { CheckoutPage } from '@/pages/CheckoutPage'
+export { HomePage } from '@/pages/HomePage'
+export { LegalPage } from '@/pages/LegalPage'
+export { NotFoundPage } from '@/pages/NotFoundPage'
+export { ProductDetailPage } from '@/pages/ProductDetailPage'
+export { WishlistPage } from '@/pages/WishlistPage'

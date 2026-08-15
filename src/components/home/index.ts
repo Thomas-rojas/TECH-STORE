@@ -1,0 +1,5 @@
+export { CategoryCarousel } from '@/components/home/CategoryCarousel'
+export { FeaturedBento } from '@/components/home/FeaturedBento'
+export { HomeHero } from '@/components/home/HomeHero'
+export { StatsBrands } from '@/components/home/StatsBrands'
+export { Testimonials } from '@/components/home/Testimonials'
