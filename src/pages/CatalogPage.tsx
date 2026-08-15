@@ -26,6 +26,7 @@ export function CatalogPage() {
   const openCart = useUiStore((state) => state.openCart)
 
   const query = searchParams.get('q') ?? ''
+  const brand = searchParams.get('marca') ?? ''
   const page = Number(searchParams.get('page') ?? '1') || 1
   const sort = (searchParams.get('sort') as SortOption) || SORT_OPTIONS.featured
 
@@ -54,10 +55,11 @@ export function CatalogPage() {
       ...DEFAULT_CATALOG_FILTERS,
       query,
       categorySlug: categorySlug ?? null,
+      brands: brand ? [brand] : [],
       sort,
       page,
     }),
-    [query, categorySlug, sort, page],
+    [query, categorySlug, brand, sort, page],
   )
 
   const { data, isLoading } = useProducts(filters)
@@ -77,7 +79,7 @@ export function CatalogPage() {
     openCart()
   }
 
-  const title = activeCategory?.name ?? (query ? `Resultados para “${query}”` : 'productos')
+  const title = [activeCategory?.name, brand].filter(Boolean).join(' · ') || (query ? `Resultados para “${query}”` : 'productos')
 
   return (
     <Container className="py-16">
@@ -86,13 +88,14 @@ export function CatalogPage() {
           { label: 'Inicio', href: ROUTES.home },
           { label: 'Productos', href: ROUTES.catalog },
           ...(activeCategory ? [{ label: activeCategory.name }] : []),
+          ...(brand ? [{ label: brand }] : []),
         ]}
       />
 
       <div className="mt-12 mb-14 max-w-3xl">
         <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          {activeCategory ? (
-            activeCategory.name
+          {activeCategory || brand ? (
+            title
           ) : query ? (
             title
           ) : (

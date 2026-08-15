@@ -17,6 +17,12 @@ export function catalogPath(categorySlug?: string): string {
   return `/catalogo/${categorySlug}`
 }
 
+export function catalogBrandPath(categorySlug: string, brand?: string): string {
+  const path = catalogPath(categorySlug)
+  if (!brand) return path
+  return `${path}?marca=${encodeURIComponent(brand)}`
+}
+
 export function productPath(slug: string): string {
   return `/producto/${slug}`
 }

@@ -1,6 +1,6 @@
 import { IMAGES } from '@/constants/images'
 
-export const brands = ['Apple', 'Samsung', 'Sony', 'Google', 'Bose', 'DJI'] as const
+export const brands = ['Apple', 'Samsung', 'Xiaomi', 'Sony', 'Google', 'Bose'] as const
 
 export const homeStats = [
   { label: 'Productos en catálogo', target: 500, suffix: '+', grouped: false },
@@ -16,11 +16,10 @@ export const heroStats = [
 ] as const
 
 export const exploreItems = [
-  { id: 'ex-iphone', name: 'iPhone', image: IMAGES.iphone16Pro, href: '/catalogo/iphone' },
-  { id: 'ex-mac', name: 'Mac', image: IMAGES.macbookPro, href: '/catalogo/mac' },
-  { id: 'ex-ipad', name: 'iPad', image: IMAGES.ipadPro, href: '/catalogo/ipad' },
-  { id: 'ex-watch', name: 'Watch', image: IMAGES.appleWatch, href: '/catalogo/watch' },
-  { id: 'ex-airpods', name: 'AirPods', image: IMAGES.airpodsPro, href: '/catalogo/airpods' },
+  { id: 'ex-celulares', name: 'Celulares', image: IMAGES.iphone16Pro, href: '/catalogo/celulares' },
+  { id: 'ex-tablets', name: 'Tablets', image: IMAGES.ipadPro, href: '/catalogo/tablets' },
+  { id: 'ex-computadores', name: 'Computadores', image: IMAGES.macbookPro, href: '/catalogo/computadores' },
+  { id: 'ex-accesorios', name: 'Accesorios', image: IMAGES.airpodsPro, href: '/catalogo/accesorios' },
 ] as const
 
 export interface Testimonial {
@@ -43,7 +42,7 @@ export const testimonials: Testimonial[] = [
       'Compré mi iPhone 16 Pro aquí y la experiencia fue increíble. El envío llegó en menos de 24 horas y el producto estaba perfectamente embalado.',
     rating: 5,
     product: 'IPHONE 16 PRO',
-    image: IMAGES.store,
+    image: IMAGES.iphone16Pro,
     avatar: IMAGES.avatars[0],
   },
   {

@@ -1,12 +1,38 @@
 import { ROUTES, catalogPath } from '@/constants/routes'
 
-export const HEADER_LINKS = [
-  { label: 'iPhone', to: catalogPath('iphone') },
-  { label: 'Mac', to: catalogPath('mac') },
-  { label: 'iPad', to: catalogPath('ipad') },
-  { label: 'Watch', to: catalogPath('watch') },
-  { label: 'Accesorios', to: catalogPath('accesorios') },
-] as const
+export interface NavDepartment {
+  label: string
+  slug: string
+  brands: string[]
+}
+
+export const NAV_DEPARTMENTS: NavDepartment[] = [
+  {
+    label: 'Celulares',
+    slug: 'celulares',
+    brands: ['Apple', 'Samsung', 'Xiaomi', 'Google'],
+  },
+  {
+    label: 'Tablets',
+    slug: 'tablets',
+    brands: ['Apple', 'Samsung', 'Xiaomi'],
+  },
+  {
+    label: 'Computadores',
+    slug: 'computadores',
+    brands: ['Apple', 'Samsung', 'Xiaomi'],
+  },
+  {
+    label: 'Accesorios',
+    slug: 'accesorios',
+    brands: ['Apple', 'Samsung', 'Xiaomi', 'Sony', 'Bose'],
+  },
+]
+
+export const HEADER_LINKS = NAV_DEPARTMENTS.map((department) => ({
+  label: department.label,
+  to: catalogPath(department.slug),
+}))
 
 export const FOOTER_LINKS = [
   { label: 'Inicio', to: ROUTES.home },

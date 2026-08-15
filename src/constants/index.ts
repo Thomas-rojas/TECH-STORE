@@ -6,11 +6,12 @@ export {
   type PriceRangeId,
   type SortOption,
 } from '@/constants/catalog'
-export { IMAGES } from '@/constants/images'
-export { FOOTER_LINKS, HEADER_LINKS } from '@/constants/nav'
+export { IMAGES, VIDEOS } from '@/constants/images'
+export { FOOTER_LINKS, HEADER_LINKS, NAV_DEPARTMENTS } from '@/constants/nav'
 export {
   ROUTES,
   catalogPath,
+  catalogBrandPath,
   productPath,
   searchPath,
   type RoutePath,

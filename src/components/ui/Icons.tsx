@@ -75,11 +75,13 @@ export function ArrowRightIcon({ className }: { className?: string }) {
   )
 }
 
-export function ChevronIcon({ direction, className }: { direction: 'left' | 'right'; className?: string }) {
+export function ChevronIcon({ direction, className }: { direction: 'left' | 'right' | 'down'; className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={cn('size-5', className)} aria-hidden>
       {direction === 'left' ? (
         <path d="M14.5 6 8.5 12l6 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      ) : direction === 'down' ? (
+        <path d="M6 9.5 12 15.5 18 9.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
       ) : (
         <path d="M9.5 6 15.5 12l-6 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
       )}

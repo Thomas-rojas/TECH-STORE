@@ -10,7 +10,7 @@ export function CategoryCarousel() {
           Explora la gama
         </h2>
 
-        <ul className="mt-16 grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">
+        <ul className="mt-16 grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-4">
           {exploreItems.map((item) => (
             <li key={item.id}>
               <Link to={item.href} className="group block text-center">

@@ -1,12 +1,12 @@
 import { Logo } from '@/components/layout/Logo'
-import { BagIcon, MenuIcon, SearchIcon, UserIcon } from '@/components/ui/Icons'
-import { HEADER_LINKS } from '@/constants/nav'
-import { ROUTES } from '@/constants/routes'
+import { BagIcon, ChevronIcon, MenuIcon, SearchIcon, UserIcon } from '@/components/ui/Icons'
+import { NAV_DEPARTMENTS } from '@/constants/nav'
+import { ROUTES, catalogBrandPath, catalogPath } from '@/constants/routes'
 import { useCart } from '@/hooks/useCart'
 import { useUiStore } from '@/stores/ui.store'
 import { cn } from '@/utils/cn'
-import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 export function Header() {
   const { itemCount } = useCart()
@@ -14,6 +14,9 @@ export function Header() {
   const openMobileNav = useUiStore((state) => state.openMobileNav)
   const openSearch = useUiStore((state) => state.openSearch)
   const [scrolled, setScrolled] = useState(false)
+  const [openSlug, setOpenSlug] = useState<string | null>(null)
+  const navRef = useRef<HTMLElement>(null)
+  const location = useLocation()
 
   useEffect(() => {
     function onScroll() {
@@ -24,11 +27,36 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    setOpenSlug(null)
+  }, [location.pathname, location.search])
+
+  useEffect(() => {
+    if (!openSlug) return
+
+    function onPointerDown(event: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setOpenSlug(null)
+      }
+    }
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpenSlug(null)
+    }
+
+    document.addEventListener('mousedown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [openSlug])
+
   return (
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-40 transition-colors duration-500',
-        scrolled
+        scrolled || openSlug
           ? 'border-b border-white/10 bg-ink-950/40 backdrop-blur-md'
           : 'border-b border-transparent bg-transparent',
       )}
@@ -46,23 +74,56 @@ export function Header() {
           <Logo />
         </div>
 
-        <nav className="pointer-events-none absolute inset-x-0 hidden justify-center lg:flex">
-          <div className="pointer-events-auto flex items-center gap-9">
-            {HEADER_LINKS.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className={({ isActive }) =>
-                  `text-[13px] font-medium tracking-wide transition ${
-                    isActive
-                      ? 'text-white underline decoration-white decoration-1 underline-offset-8'
-                      : 'text-white/75 hover:text-white'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+        <nav ref={navRef} className="pointer-events-none absolute inset-x-0 hidden justify-center lg:flex">
+          <div className="pointer-events-auto flex items-center gap-2">
+            {NAV_DEPARTMENTS.map((department) => {
+              const isOpen = openSlug === department.slug
+              return (
+                <div key={department.slug} className="relative">
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-haspopup="menu"
+                    onClick={() => setOpenSlug(isOpen ? null : department.slug)}
+                    className={cn(
+                      'flex items-center gap-1 px-3 py-2 text-[13px] font-medium tracking-wide transition',
+                      isOpen ? 'text-white' : 'text-white/75 hover:text-white',
+                    )}
+                  >
+                    {department.label}
+                    <ChevronIcon
+                      direction="down"
+                      className={cn('size-3.5 opacity-70 transition', isOpen && 'rotate-180')}
+                    />
+                  </button>
+
+                  {isOpen ? (
+                    <div
+                      role="menu"
+                      className="absolute left-1/2 top-full z-50 mt-2 w-52 -translate-x-1/2 rounded-2xl border border-white/10 bg-ink-950/95 p-2 shadow-2xl backdrop-blur-md"
+                    >
+                      <Link
+                        to={catalogPath(department.slug)}
+                        role="menuitem"
+                        className="block rounded-xl px-3 py-2.5 text-[13px] text-white/70 transition hover:bg-white/5 hover:text-white"
+                      >
+                        Ver todos
+                      </Link>
+                      {department.brands.map((brand) => (
+                        <Link
+                          key={brand}
+                          to={catalogBrandPath(department.slug, brand)}
+                          role="menuitem"
+                          className="block rounded-xl px-3 py-2.5 text-[13px] text-white/70 transition hover:bg-white/5 hover:text-white"
+                        >
+                          {brand}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              )
+            })}
           </div>
         </nav>
 

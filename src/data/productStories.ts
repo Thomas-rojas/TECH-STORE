@@ -66,7 +66,6 @@ const stories: Record<string, ProductStory> = {
         kicker: 'Diseño',
         title: 'Titanio. Tan fuerte. Tan ligero. Tan Pro.',
         body: 'Caja de titanio de grado 5, Botón de Acción y USB-C. Resistencia IP68 y un peso de 199 g.',
-        image: IMAGES.iphone16Pro,
       },
       {
         kicker: 'Batería',

@@ -1,13 +1,17 @@
 import { Logo } from '@/components/layout/Logo'
 import { SocialLinks } from '@/components/layout/SocialLinks'
-import { HEADER_LINKS } from '@/constants/nav'
-import { ROUTES } from '@/constants/routes'
+import { ChevronIcon } from '@/components/ui/Icons'
+import { NAV_DEPARTMENTS } from '@/constants/nav'
+import { ROUTES, catalogBrandPath, catalogPath } from '@/constants/routes'
 import { useUiStore } from '@/stores/ui.store'
+import { cn } from '@/utils/cn'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export function MobileNav() {
   const open = useUiStore((state) => state.isMobileNavOpen)
   const close = useUiStore((state) => state.closeMobileNav)
+  const [openSlug, setOpenSlug] = useState<string | null>(null)
 
   if (!open) return null
 
@@ -22,16 +26,46 @@ export function MobileNav() {
           </button>
         </div>
         <nav className="grid gap-1">
-          {HEADER_LINKS.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              onClick={close}
-              className="py-3 text-[15px] font-medium text-white/80 hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_DEPARTMENTS.map((department) => {
+            const isOpen = openSlug === department.slug
+            return (
+              <div key={department.slug}>
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  onClick={() => setOpenSlug(isOpen ? null : department.slug)}
+                  className="flex w-full items-center justify-between py-3 text-left text-[15px] font-medium text-white/80 hover:text-white"
+                >
+                  {department.label}
+                  <ChevronIcon
+                    direction="down"
+                    className={cn('size-4 text-ink-400 transition', isOpen && 'rotate-180')}
+                  />
+                </button>
+                {isOpen ? (
+                  <div className="mb-2 ml-1 grid gap-1 border-l border-white/10 pl-4">
+                    <Link
+                      to={catalogPath(department.slug)}
+                      onClick={close}
+                      className="py-2 text-sm text-white/60 hover:text-white"
+                    >
+                      Ver todos
+                    </Link>
+                    {department.brands.map((brand) => (
+                      <Link
+                        key={brand}
+                        to={catalogBrandPath(department.slug, brand)}
+                        onClick={close}
+                        className="py-2 text-sm text-white/60 hover:text-white"
+                      >
+                        {brand}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            )
+          })}
           <Link
             to={ROUTES.wishlist}
             onClick={close}
