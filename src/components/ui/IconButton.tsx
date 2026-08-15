@@ -12,8 +12,8 @@ export function IconButton({ className, variant = 'outline', ...props }: IconBut
       className={cn(
         'inline-flex size-11 items-center justify-center rounded-full transition duration-300',
         variant === 'solid'
-          ? 'bg-brand-500 text-white hover:bg-brand-600'
-          : 'border border-white/20 text-white hover:border-white/40',
+          ? 'bg-brand-500 text-ink-800 hover:bg-brand-400'
+          : 'border border-ink-300 text-ink-800 hover:border-peri-500',
         className,
       )}
       {...props}

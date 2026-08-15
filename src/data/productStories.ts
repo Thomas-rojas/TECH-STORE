@@ -54,13 +54,13 @@ const stories: Record<string, ProductStory> = {
         kicker: 'Cámara',
         title: 'El sistema de cámaras Pro más versátil.',
         body: 'Cámara Fusion de 48 MP, ultra gran angular de 48 MP y teleobjetivo con zoom óptico de 5x. Control de Cámara para enfocar y capturar al instante.',
-        image: IMAGES.iphone16ProAlt,
+        image: IMAGES.iphone16Pro,
       },
       {
         kicker: 'Pantalla',
         title: 'Super Retina XDR. Hasta 2000 nits.',
         body: '6.3 pulgadas, ProMotion a 120 Hz y Ceramic Shield. Brillo extremo al sol y Always-On para la Dynamic Island.',
-        image: IMAGES.hero,
+        image: IMAGES.iphone16Pro,
       },
       {
         kicker: 'Diseño',

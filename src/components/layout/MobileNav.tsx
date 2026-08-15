@@ -2,7 +2,7 @@ import { Logo } from '@/components/layout/Logo'
 import { SocialLinks } from '@/components/layout/SocialLinks'
 import { ChevronIcon } from '@/components/ui/Icons'
 import { NAV_DEPARTMENTS } from '@/constants/nav'
-import { ROUTES, catalogBrandPath, catalogPath } from '@/constants/routes'
+import { ROUTES, catalogPath } from '@/constants/routes'
 import { useUiStore } from '@/stores/ui.store'
 import { cn } from '@/utils/cn'
 import { useState } from 'react'
@@ -17,10 +17,10 @@ export function MobileNav() {
 
   return (
     <div className="fixed inset-0 z-50 lg:hidden">
-      <button type="button" className="absolute inset-0 bg-ink-950/80" aria-label="Cerrar menú" onClick={close} />
-      <div className="relative z-10 flex h-full w-80 max-w-[85%] flex-col border-r border-white/[0.06] bg-ink-950 p-8">
+      <button type="button" className="absolute inset-0 bg-black/40" aria-label="Cerrar menú" onClick={close} />
+      <div className="relative z-10 flex h-full w-80 max-w-[85%] flex-col border-r border-black/[0.06] bg-white p-8">
         <div className="mb-16 flex items-center justify-between">
-          <Logo />
+          <Logo className="text-ink-900" wordmarkClassName="text-ink-900" />
           <button type="button" onClick={close} className="text-[10px] uppercase tracking-[0.28em] text-ink-400">
             Cerrar
           </button>
@@ -34,7 +34,7 @@ export function MobileNav() {
                   type="button"
                   aria-expanded={isOpen}
                   onClick={() => setOpenSlug(isOpen ? null : department.slug)}
-                  className="flex w-full items-center justify-between py-3 text-left text-[15px] font-medium text-white/80 hover:text-white"
+                  className="flex w-full items-center justify-between py-3 text-left text-[15px] font-medium text-ink-800 hover:text-ink-900"
                 >
                   {department.label}
                   <ChevronIcon
@@ -43,22 +43,24 @@ export function MobileNav() {
                   />
                 </button>
                 {isOpen ? (
-                  <div className="mb-2 ml-1 grid gap-1 border-l border-white/10 pl-4">
+                  <div className="mb-2 ml-1 grid gap-1 border-l border-black/10 pl-4">
                     <Link
                       to={catalogPath(department.slug)}
                       onClick={close}
-                      className="py-2 text-sm text-white/60 hover:text-white"
+                      className="py-2 text-sm text-ink-500 hover:text-ink-900"
                     >
                       Ver todos
                     </Link>
-                    {department.brands.map((brand) => (
+                    {department.items
+                      .filter((entry) => !entry.label.toLowerCase().includes('todo'))
+                      .map((entry) => (
                       <Link
-                        key={brand}
-                        to={catalogBrandPath(department.slug, brand)}
+                        key={entry.href}
+                        to={entry.href}
                         onClick={close}
-                        className="py-2 text-sm text-white/60 hover:text-white"
+                        className="py-2 text-sm text-ink-500 hover:text-ink-900"
                       >
-                        {brand}
+                        {entry.label}
                       </Link>
                     ))}
                   </div>
@@ -67,16 +69,23 @@ export function MobileNav() {
             )
           })}
           <Link
+            to="/#mayorista"
+            onClick={close}
+            className="py-3 text-[15px] font-medium text-ink-800 hover:text-ink-900"
+          >
+            Al por mayor
+          </Link>
+          <Link
             to={ROUTES.wishlist}
             onClick={close}
-            className="py-3 text-[15px] font-medium text-white/80 hover:text-white"
+            className="py-3 text-[15px] font-medium text-ink-800 hover:text-ink-900"
           >
             Favoritos
           </Link>
           <Link
             to={ROUTES.cart}
             onClick={close}
-            className="py-3 text-[15px] font-medium text-white/80 hover:text-white"
+            className="py-3 text-[15px] font-medium text-ink-800 hover:text-ink-900"
           >
             Carrito
           </Link>

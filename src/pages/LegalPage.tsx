@@ -20,8 +20,8 @@ export function LegalPage() {
 
   return (
     <Container className="py-16">
-      <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white">{content.title}</h1>
-      <p className="mt-8 max-w-2xl font-light leading-relaxed text-ink-300">{content.body}</p>
+      <h1 className="mt-2 text-4xl font-semibold tracking-tight text-ink-900">{content.title}</h1>
+      <p className="mt-8 max-w-2xl font-light leading-relaxed text-ink-500">{content.body}</p>
     </Container>
   )
 }

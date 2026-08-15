@@ -6,7 +6,7 @@ export {
   type PriceRangeId,
   type SortOption,
 } from '@/constants/catalog'
-export { IMAGES, VIDEOS } from '@/constants/images'
+export { IMAGES } from '@/constants/images'
 export { FOOTER_LINKS, HEADER_LINKS, NAV_DEPARTMENTS } from '@/constants/nav'
 export {
   ROUTES,

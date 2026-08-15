@@ -22,7 +22,7 @@ export function ProductOptions({
     <div className="mt-10 space-y-8">
       {colors.length > 0 ? (
         <div>
-          <p className="text-sm font-medium text-white">Color</p>
+          <p className="text-sm font-medium text-ink-900">Color</p>
           <p className="mt-1 text-sm text-ink-400">{color}</p>
           <div className="mt-4 flex flex-wrap gap-3">
             {colors.map((item) => (
@@ -33,9 +33,9 @@ export function ProductOptions({
                 onClick={() => onColorChange(item.name)}
                 className={cn(
                   'size-8 rounded-full border-2 transition',
-                  color === item.name ? 'border-white' : 'border-transparent',
+                  color === item.name ? 'border-ink-900' : 'border-transparent',
                 )}
-                style={{ backgroundColor: item.hex, boxShadow: 'inset 0 0 0 1px rgb(255 255 255 / 0.15)' }}
+                style={{ backgroundColor: item.hex, boxShadow: 'inset 0 0 0 1px rgb(0 0 0 / 0.12)' }}
               />
             ))}
           </div>
@@ -44,7 +44,7 @@ export function ProductOptions({
 
       {capacities.length > 0 ? (
         <div>
-          <p className="text-sm font-medium text-white">Capacidad</p>
+          <p className="text-sm font-medium text-ink-900">Capacidad</p>
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {capacities.map((item) => (
               <button
@@ -54,8 +54,8 @@ export function ProductOptions({
                 className={cn(
                   'rounded-xl border px-3 py-3 text-sm font-medium transition',
                   capacity === item
-                    ? 'border-white text-white'
-                    : 'border-white/15 text-ink-300 hover:border-white/40',
+                    ? 'border-ink-900 text-ink-900'
+                    : 'border-black/10 text-ink-500 hover:border-black/30',
                 )}
               >
                 {item}

@@ -1,4 +1,4 @@
 export const STORAGE_KEYS = {
-  cart: 'techstore.cart',
-  wishlist: 'techstore.wishlist',
+  cart: 'importcas.cart',
+  wishlist: 'importcas.wishlist',
 } as const

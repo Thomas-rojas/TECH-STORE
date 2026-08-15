@@ -9,7 +9,7 @@ interface QuantitySelectorProps {
 
 export function QuantitySelector({ value, min = 1, max = 10, onChange }: QuantitySelectorProps) {
   return (
-    <div className="inline-flex items-center border border-white/15">
+    <div className="inline-flex items-center border border-black/15">
       <Button
         variant="ghost"
         size="sm"

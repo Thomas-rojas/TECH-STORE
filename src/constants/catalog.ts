@@ -20,10 +20,10 @@ export const DEFAULT_SORT: SortOption = SORT_OPTIONS.featured
 
 export const PRICE_RANGES = [
   { id: 'all', label: 'Todos los precios', min: null, max: null },
-  { id: 'lt300', label: 'Menos de $300', min: null, max: 299 },
-  { id: '300-800', label: '$300 – $800', min: 300, max: 800 },
-  { id: '800-1200', label: '$800 – $1,200', min: 800, max: 1200 },
-  { id: 'gt1200', label: 'Más de $1,200', min: 1201, max: null },
+  { id: 'lt500', label: 'Hasta $500.000', min: null, max: 500_000 },
+  { id: '500-2m', label: '$500.000 – $2.000.000', min: 500_000, max: 2_000_000 },
+  { id: '2m-5m', label: '$2.000.000 – $5.000.000', min: 2_000_000, max: 5_000_000 },
+  { id: 'gt5m', label: 'Más de $5.000.000', min: 5_000_001, max: null },
 ] as const
 
 export type PriceRangeId = (typeof PRICE_RANGES)[number]['id']

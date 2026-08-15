@@ -26,7 +26,7 @@ export function CheckoutPage() {
       <form className="space-y-8" onSubmit={(event) => event.preventDefault()}>
         <div>
           <p className="eyebrow">Envío</p>
-          <h1 className="mt-3 font-display text-4xl font-medium text-ink-50">Checkout</h1>
+          <h1 className="mt-3 font-display text-4xl font-medium text-ink-900">Checkout</h1>
         </div>
         <Input label="Nombre" placeholder="Nombre completo" />
         <Input label="Email" type="email" placeholder="correo@dominio.com" />
@@ -45,14 +45,14 @@ export function CheckoutPage() {
         <ul className="mt-8 space-y-4 text-sm">
           {lines.map((line) => (
             <li key={line.productId} className="flex justify-between gap-3">
-              <span className="text-ink-300">
+              <span className="text-ink-500">
                 {line.product.name} × {line.quantity}
               </span>
-              <span className="text-ink-50">{formatCurrency(line.product.price * line.quantity)}</span>
+              <span className="text-ink-900">{formatCurrency(line.product.price * line.quantity)}</span>
             </li>
           ))}
         </ul>
-        <div className="mt-8 flex justify-between border-t border-white/[0.06] pt-6 text-sm text-ink-50">
+        <div className="mt-8 flex justify-between border-t border-black/[0.06] pt-6 text-sm text-ink-900">
           <span className="uppercase tracking-[0.18em] text-ink-400">Subtotal</span>
           <span>{formatCurrency(subtotal)}</span>
         </div>

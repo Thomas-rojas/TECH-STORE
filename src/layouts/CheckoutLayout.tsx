@@ -4,11 +4,11 @@ import { Link, Outlet } from 'react-router-dom'
 
 export function CheckoutLayout() {
   return (
-    <div className="min-h-screen bg-ink-950 text-ink-50">
-      <header className="border-b border-white/[0.04] bg-ink-950">
+    <div className="min-h-screen bg-white text-ink-900">
+      <header className="border-b border-black/[0.06] bg-ink-100">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
           <Logo />
-          <Link to={ROUTES.cart} className="text-sm font-medium text-ink-300 hover:text-white">
+          <Link to={ROUTES.cart} className="text-sm font-medium text-ink-500 hover:text-peri-600">
             Volver al carrito
           </Link>
         </div>

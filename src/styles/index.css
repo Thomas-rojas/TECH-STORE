@@ -2,34 +2,44 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-product: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Inter, sans-serif;
 
-  --color-brand-50: #e8f3ff;
-  --color-brand-100: #cfe7ff;
-  --color-brand-200: #9fd0ff;
-  --color-brand-300: #6bb8ff;
-  --color-brand-400: #3a9fff;
-  --color-brand-500: #2189ff;
-  --color-brand-600: #1470db;
-  --color-brand-700: #0f57ad;
-  --color-brand-800: #0c3f7c;
-  --color-brand-900: #0a2b54;
-  --color-brand-950: #061833;
+  --color-brand-50: #eefafb;
+  --color-brand-100: #bdf1f6;
+  --color-brand-200: #a7e7ed;
+  --color-brand-300: #8ee0e8;
+  --color-brand-400: #78d6df;
+  --color-brand-500: #64cad4;
+  --color-brand-600: #4bb8c4;
+  --color-brand-700: #2f9eab;
+  --color-brand-800: #1f7d88;
+  --color-brand-900: #0f5c66;
+  --color-brand-950: #0a3d44;
 
-  --color-ink-50: #f5f5f5;
-  --color-ink-100: #e6e6e6;
-  --color-ink-200: #c8c8c8;
-  --color-ink-300: #a3a3a3;
-  --color-ink-400: #7a7a7a;
-  --color-ink-500: #5c5c5c;
-  --color-ink-600: #3d3d3d;
-  --color-ink-700: #2a2a2a;
-  --color-ink-800: #1a1a1a;
-  --color-ink-900: #111111;
-  --color-ink-950: #000000;
+  --color-peri-400: #7b96d8;
+  --color-peri-500: #5a7ecc;
+  --color-peri-600: #4a6bb8;
+  --color-peri-700: #3b5899;
 
-  --color-gold: #2189ff;
-  --color-rosso: #2189ff;
+  --color-mint: #98f1c4;
+  --color-lima: #dbf947;
+  --color-offer: #d9483b;
+
+  --color-ink-50: #ffffff;
+  --color-ink-100: #f7f7f7;
+  --color-ink-200: #eceae8;
+  --color-ink-300: #d4cfcb;
+  --color-ink-400: #8a847f;
+  --color-ink-500: #595350;
+  --color-ink-600: #3f3b38;
+  --color-ink-700: #231f1f;
+  --color-ink-800: #231f1f;
+  --color-ink-900: #020202;
+  --color-ink-950: #020202;
+
+  --color-gold: #5a7ecc;
+  --color-rosso: #5a7ecc;
   --shadow-glow: none;
   --animate-runway: runway 80s linear infinite;
 }
@@ -50,11 +60,12 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--color-ink-950);
-  color: var(--color-ink-50);
+  background: #f7f7f7;
+  color: #231f1f;
   font-family: var(--font-sans);
   font-weight: 400;
   letter-spacing: 0;
+  line-height: 1.35;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -64,14 +75,44 @@ body {
 
 ::selection {
   background: var(--color-brand-500);
-  color: #fff;
+  color: #231f1f;
 }
 
 .eyebrow {
   font-size: 0.8125rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--color-ink-400);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  color: var(--color-ink-500);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.font-product {
+  font-family: var(--font-product);
+  letter-spacing: -0.022em;
+}
+
+.brand-gradient {
+  background-image: linear-gradient(
+    120deg,
+    rgb(90 126 204 / 0.45),
+    rgb(100 202 212 / 0.5),
+    rgb(152 241 196 / 0.35)
+  );
+}
+
+.brand-gradient-mint {
+  background-image: linear-gradient(120deg, rgb(152 241 196 / 0.45), rgb(100 202 212 / 0.5));
+}
+
+.brand-gradient-grafito {
+  background-image: linear-gradient(160deg, #595350 0%, #231f1f 100%);
 }
 
 .scrollbar-none {

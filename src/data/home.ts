@@ -1,25 +1,136 @@
 import { IMAGES } from '@/constants/images'
+import { catalogPath, productPath } from '@/constants/routes'
 
-export const brands = ['Apple', 'Samsung', 'Xiaomi', 'Sony', 'Google', 'Bose'] as const
+export const brands = ['Apple', 'Amazon', 'ASUS', 'MSI', 'Lenovo', 'Bose', 'Sony', 'Roku', 'Hollyland'] as const
+
+export const heroSlides = [
+  {
+    id: 'macbook-pro',
+    brand: 'Apple',
+    eyebrow: 'MacBook Pro 14"',
+    title: 'Apple también es computador',
+    subtitle: 'Chip M4. Para crear, no solo para el bolsillo.',
+    image: IMAGES.macbookPro,
+    href: productPath('macbook-pro-14'),
+  },
+  {
+    id: 'iphone-17-pro',
+    brand: 'Apple',
+    eyebrow: 'iPhone 17 Pro',
+    title: 'Teléfonos con inventario real',
+    subtitle: 'De la serie 14 a la 17. Precio claro en Colombia.',
+    image: IMAGES.iphone16Pro,
+    href: productPath('iphone-17-pro'),
+  },
+  {
+    id: 'echo-dot',
+    brand: 'Amazon',
+    eyebrow: 'Familia Alexa',
+    title: 'Todas las variedades',
+    subtitle: 'Echo Pop, Dot, Show y Spot. El hogar con Amazon.',
+    image: IMAGES.echoStudio,
+    href: catalogPath('alexa'),
+  },
+  {
+    id: 'asus-rog',
+    brand: 'ASUS',
+    eyebrow: 'Gaming',
+    title: 'PCs de otras marcas',
+    subtitle: 'ROG, MSI y Legion. Potencia fuera del universo Apple.',
+    image: IMAGES.laptopStudio,
+    href: catalogPath('gaming'),
+  },
+  {
+    id: 'airpods-pro-3',
+    brand: 'Apple',
+    eyebrow: 'Audio',
+    title: 'AirPods, Bose y más',
+    subtitle: 'Sonido para escuchar, crear y el escenario.',
+    image: IMAGES.airpodsPro,
+    href: catalogPath('audio'),
+  },
+] as const
+
+export const bestsellerSlugs = [
+  'airpods-pro-3',
+  'macbook-air',
+  'amazon-echo-dot-5',
+  'asus-rog-strix-g16',
+  'ipad-11-a16',
+  'sony-wh-1000xm5',
+] as const
 
 export const homeStats = [
-  { label: 'Productos en catálogo', target: 500, suffix: '+', grouped: false },
-  { label: 'Marcas premium', target: 15, suffix: '+', grouped: false },
-  { label: 'Clientes satisfechos', target: 12_000, suffix: '+', grouped: true },
-  { label: 'Satisfacción garantizada', target: 99, suffix: '%', grouped: false },
+  { label: 'Clientes satisfechos', target: 300, suffix: '+', grouped: false },
+  { label: 'Calificación promedio', target: 4.96, suffix: '', grouped: false, rating: true },
+  { label: 'Productos en stock', target: 120, suffix: '+', grouped: false },
+  { label: 'Envíos a tiempo', target: 98, suffix: '%', grouped: false },
 ] as const
 
 export const heroStats = [
-  { value: '500+', label: 'Productos' },
-  { value: '15+', label: 'Marcas' },
-  { value: '24h', label: 'Envío' },
+  { value: '4.96', label: 'Estrellas' },
+  { value: '300+', label: 'Clientes' },
+  { value: 'COP', label: 'Precios claros' },
 ] as const
 
 export const exploreItems = [
-  { id: 'ex-celulares', name: 'Celulares', image: IMAGES.iphone16Pro, href: '/catalogo/celulares' },
-  { id: 'ex-tablets', name: 'Tablets', image: IMAGES.ipadPro, href: '/catalogo/tablets' },
-  { id: 'ex-computadores', name: 'Computadores', image: IMAGES.macbookPro, href: '/catalogo/computadores' },
-  { id: 'ex-accesorios', name: 'Accesorios', image: IMAGES.airpodsPro, href: '/catalogo/accesorios' },
+  { id: 'ex-iphone', name: 'iPhone', image: IMAGES.iphone16Pro, href: catalogPath('iphone'), zoom: 'scale-[1.05]' },
+  { id: 'ex-mac', name: 'Mac', image: IMAGES.macbookPro, href: catalogPath('mac'), zoom: 'scale-[1.85]' },
+  { id: 'ex-ipads', name: 'iPad', image: IMAGES.ipadPro, href: catalogPath('ipads'), zoom: 'scale-[1.12]' },
+  { id: 'ex-audio', name: 'Audio', image: IMAGES.airpodsPro, href: catalogPath('audio'), zoom: 'scale-[1.2]' },
+  { id: 'ex-alexa', name: 'Alexa', image: IMAGES.echoStudio, href: catalogPath('alexa'), zoom: 'scale-[1.08]' },
+  { id: 'ex-gaming', name: 'Gaming', image: IMAGES.laptopStudio, href: catalogPath('gaming'), zoom: 'scale-[1.15]', cover: true },
+] as const
+
+export const universePanels = [
+  {
+    id: 'uni-apple',
+    kicker: 'Apple',
+    title: 'Seguridad y variedad',
+    body: 'Mac, iPad, AirPods, Pencil y carga original. No es solo el teléfono.',
+    image: IMAGES.macbookPro,
+    href: catalogPath('mac'),
+    zoom: 'scale-[1.55]',
+  },
+  {
+    id: 'uni-alexa',
+    kicker: 'Amazon',
+    title: 'Toda Alexa',
+    body: 'Pop, Dot, Show y Spot. El hogar inteligente, en todas sus formas.',
+    image: IMAGES.echoStudio,
+    href: catalogPath('alexa'),
+  },
+  {
+    id: 'uni-audio',
+    kicker: 'Sonido',
+    title: 'Escuchar y crear',
+    body: 'AirPods, Bose, Sony y micrófonos. Audio para cada momento.',
+    image: IMAGES.airpodsPro,
+    href: catalogPath('audio'),
+  },
+  {
+    id: 'uni-gaming',
+    kicker: 'Gaming',
+    title: 'Otras marcas',
+    body: 'ROG, MSI y Legion. PCs gamer fuera del universo Apple.',
+    image: IMAGES.laptopStudio,
+    href: catalogPath('gaming'),
+  },
+] as const
+
+export const trustPillars = [
+  {
+    title: 'Inventario sólido y actualizado',
+    body: 'Apple completo, Alexa, sonido y PCs gaming. Lo que ves está disponible.',
+  },
+  {
+    title: 'Seguridad en cada compra',
+    body: 'Productos originales, pago protegido con Mercado Pago y factura clara.',
+  },
+  {
+    title: 'Claridad y puntualidad',
+    body: 'Precios en pesos colombianos, tiempos de envío honestos y soporte real.',
+  },
 ] as const
 
 export interface Testimonial {
@@ -31,62 +142,56 @@ export interface Testimonial {
   product: string
   image: string
   avatar: string
+  verified: boolean
 }
 
 export const testimonials: Testimonial[] = [
   {
     id: 't-01',
-    name: 'Valentina Herrera',
-    role: 'Diseñadora UX - Buenos Aires',
+    name: 'Laura Méndez',
+    role: 'Bogotá',
     quote:
-      'Compré mi iPhone 16 Pro aquí y la experiencia fue increíble. El envío llegó en menos de 24 horas y el producto estaba perfectamente embalado.',
+      'La honestidad se nota desde el primer WhatsApp. El MacBook llegó sellado y puntual, tal como lo prometieron.',
     rating: 5,
-    product: 'IPHONE 16 PRO',
-    image: IMAGES.iphone16Pro,
+    product: 'MacBook Air',
+    image: IMAGES.macbookAir,
     avatar: IMAGES.avatars[0],
+    verified: true,
   },
   {
     id: 't-02',
-    name: 'Martín López',
-    role: 'Productor audiovisual - Madrid',
+    name: 'Andrés Ríos',
+    role: 'Medellín',
     quote:
-      'El MacBook Pro M4 rinde exactamente como prometieron. Atención rápida y un unboxing de nivel.',
+      'No es solo iPhone. Pedí el Echo Dot y un parlante el mismo día. Inventario real y puntualidad impecable.',
     rating: 5,
-    product: 'MACBOOK PRO M4',
-    image: IMAGES.macbookPro,
+    product: 'Echo Dot 5',
+    image: IMAGES.echoStudio,
     avatar: IMAGES.avatars[1],
+    verified: true,
   },
   {
     id: 't-03',
-    name: 'Sofía Ramírez',
-    role: 'Fotógrafa - Ciudad de México',
+    name: 'Camila Torres',
+    role: 'Cali',
     quote:
-      'Pedí el iPad Pro M4 en oferta y llegó sellado, con factura y en tiempo récord. Volvería a comprar sin dudar.',
+      'Me explicaron el iPad 11 y el Pencil sin presionar. Se siente una compra segura, no un empujón de ventas.',
     rating: 5,
-    product: 'IPAD PRO M4',
-    image: IMAGES.ipadPro,
+    product: 'iPad 11 A16',
+    image: IMAGES.ipadAir,
     avatar: IMAGES.avatars[2],
+    verified: true,
   },
   {
     id: 't-04',
     name: 'Diego Castro',
-    role: 'Ingeniero - Bogotá',
+    role: 'Barranquilla',
     quote:
-      'Comparé precios y me quedé por el servicio. Los AirPods Pro 2 son auténticos y el seguimiento del pedido es claro.',
+      'Buscaba un ROG, no un Mac. Cumplieron la fecha y el equipo era exactamente el que cotizaron.',
     rating: 5,
-    product: 'AIRPODS PRO 2',
-    image: IMAGES.airpodsPro,
+    product: 'ASUS ROG Strix G16',
+    image: IMAGES.asusRog,
     avatar: IMAGES.avatars[3],
-  },
-  {
-    id: 't-05',
-    name: 'Camila Ortiz',
-    role: 'Estudiante - Santiago',
-    quote:
-      'Mi primer Apple Watch lo compré aquí. Me asesoraron bien y el envío fue al día siguiente.',
-    rating: 5,
-    product: 'APPLE WATCH',
-    image: IMAGES.appleWatch,
-    avatar: IMAGES.avatars[4],
+    verified: true,
   },
 ]

@@ -25,27 +25,27 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
     <div className="fixed inset-0 z-50 flex justify-end">
       <button
         type="button"
-        className="absolute inset-0 bg-ink-950/70"
+        className="absolute inset-0 bg-black/40"
         aria-label="Cerrar"
         onClick={onClose}
       />
       <div
         className={cn(
-          'relative z-10 flex h-full w-full max-w-md flex-col border-l border-white/[0.06] bg-ink-950',
+          'relative z-10 flex h-full w-full max-w-md flex-col border-l border-black/[0.06] bg-white',
           className,
         )}
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
       >
-        <div className="flex items-center justify-between border-b border-white/[0.06] px-6 py-6">
-          <h2 id="modal-title" className="font-display text-2xl font-medium text-ink-50">
+        <div className="flex items-center justify-between border-b border-black/[0.06] px-6 py-6">
+          <h2 id="modal-title" className="font-display text-2xl font-medium text-ink-900">
             {title}
           </h2>
           <button
             type="button"
             onClick={onClose}
-            className="text-[10px] uppercase tracking-[0.28em] text-ink-400 hover:text-white"
+            className="text-[10px] uppercase tracking-[0.28em] text-ink-400 hover:text-ink-900"
           >
             Cerrar
           </button>

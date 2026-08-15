@@ -39,10 +39,10 @@ export function CartDrawer() {
             {lines.map((line) => (
               <li key={line.productId} className="flex gap-3">
                 <Link to={productPath(line.product.slug)} onClick={closeCart} className="size-20 shrink-0">
-                  <ProductImage src={line.product.images[0]} alt="" className="h-full w-full rounded-xl" />
+                  <ProductImage src={line.product.images[0]} alt="" size="thumb" className="h-full w-full" />
                 </Link>
                 <div className="min-w-0 flex-1">
-                  <Link to={productPath(line.product.slug)} onClick={closeCart} className="line-clamp-1 font-display text-xl text-ink-50">
+                  <Link to={productPath(line.product.slug)} onClick={closeCart} className="line-clamp-1 font-display text-xl text-ink-900">
                     {line.product.name}
                   </Link>
                   <Price price={line.product.price} size="sm" />
@@ -54,7 +54,7 @@ export function CartDrawer() {
                     />
                     <button
                       type="button"
-                      className="text-xs text-ink-400 hover:text-white"
+                      className="text-xs text-ink-400 hover:text-ink-900"
                       onClick={() => removeItem(line.productId)}
                     >
                       Quitar
@@ -64,10 +64,10 @@ export function CartDrawer() {
               </li>
             ))}
           </ul>
-          <div className="border-t border-white/[0.06] p-6">
+          <div className="border-t border-black/[0.06] p-6">
             <div className="mb-6 flex items-center justify-between">
               <span className="text-[11px] uppercase tracking-[0.22em] text-ink-400">Subtotal</span>
-              <span className="font-display text-2xl text-ink-50">{formatCurrency(subtotal)}</span>
+              <span className="font-display text-2xl text-ink-900">{formatCurrency(subtotal)}</span>
             </div>
             <div className="grid gap-3">
               <Button onClick={() => go(ROUTES.cart)}>Ver carrito</Button>

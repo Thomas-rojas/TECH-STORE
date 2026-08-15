@@ -1,8 +1,8 @@
-import { Badge } from '@/components/ui/Badge'
 import { Price } from '@/components/shared/Price'
 import { ProductImage } from '@/components/shared/ProductImage'
 import { productPath } from '@/constants/routes'
 import type { Product } from '@/types/product'
+import { formatDiscount } from '@/utils/format'
 import { Link } from 'react-router-dom'
 
 interface ProductCardProps {
@@ -14,54 +14,71 @@ interface ProductCardProps {
 
 export function ProductCard({ product, isWishlisted = false, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const outOfStock = product.stock <= 0
-  const onSale = Boolean(product.compareAtPrice && product.compareAtPrice > product.price)
+  const discount = product.compareAtPrice ? formatDiscount(product.price, product.compareAtPrice) : 0
+  const onSale = discount > 0 && !product.priceMax
 
   return (
     <article className="group flex h-full flex-col">
-      <div className="relative">
+      <div className="relative overflow-hidden rounded-[28px] bg-ink-100 transition duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_24px_60px_rgba(89,83,80,0.12)]">
         <Link to={productPath(product.slug)} className="block">
-          <ProductImage
-            src={product.images[0]}
-            alt={product.name}
-            className="aspect-square rounded-3xl"
-          />
+          <ProductImage src={product.images[0]} alt={product.name} className="aspect-square" />
         </Link>
-        <div className="absolute left-4 top-4 flex gap-2">
-          {product.isNew ? <Badge tone="brand">Nuevo</Badge> : null}
-          {onSale ? <Badge tone="sale">Oferta</Badge> : null}
-          {outOfStock ? <Badge tone="warning">Agotado</Badge> : null}
+        <div className="absolute left-3 top-3 flex flex-col items-start gap-1.5">
+          {onSale ? (
+            <span className="rounded-md bg-offer px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
+              Precio de oferta
+            </span>
+          ) : null}
+          {onSale ? (
+            <span className="rounded-md bg-lima px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-ink-800">
+              Ahorro {discount}%
+            </span>
+          ) : product.isNew ? (
+            <span className="rounded-md bg-white/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-ink-600">
+              Nuevo
+            </span>
+          ) : null}
+          {outOfStock ? (
+            <span className="rounded-md bg-ink-800 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
+              Agotado
+            </span>
+          ) : null}
         </div>
-      </div>
-
-      <p className="mt-5 text-sm text-ink-400">{product.brand}</p>
-      <Link
-        to={productPath(product.slug)}
-        className="mt-1 text-[17px] font-semibold tracking-tight text-white transition group-hover:text-ink-200"
-      >
-        {product.name}
-      </Link>
-      <div className="mt-2">
-        <Price price={product.price} compareAtPrice={product.compareAtPrice} />
-      </div>
-      <div className="mt-4 flex gap-4 text-sm">
         <button
           type="button"
           disabled={outOfStock}
           onClick={() => onAddToCart(product)}
-          className="text-brand-400 hover:text-brand-300 disabled:opacity-40"
+          className="absolute inset-x-4 bottom-4 rounded-full bg-ink-800 py-2.5 text-[13px] font-medium text-white transition duration-300 max-sm:translate-y-0 max-sm:opacity-100 sm:translate-y-3 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 disabled:hidden"
         >
-          Añadir
+          Añadir al carrito
         </button>
-        {onToggleWishlist ? (
-          <button
-            type="button"
-            onClick={() => onToggleWishlist(product)}
-            className={isWishlisted ? 'text-brand-400' : 'text-ink-500 hover:text-white'}
-          >
-            Guardar
-          </button>
-        ) : null}
       </div>
+
+      <p className="mt-5 text-[12px] font-medium text-ink-400">{product.brand}</p>
+      <Link
+        to={productPath(product.slug)}
+        className="font-product mt-1 text-[17px] font-semibold text-ink-800 transition group-hover:text-peri-600"
+      >
+        {product.name}
+      </Link>
+      <div className="mt-2">
+        <Price
+          price={product.price}
+          compareAtPrice={product.compareAtPrice}
+          priceMax={product.priceMax}
+          priceFrom={product.priceFrom}
+          showSavings
+        />
+      </div>
+      {onToggleWishlist ? (
+        <button
+          type="button"
+          onClick={() => onToggleWishlist(product)}
+          className={`mt-3 self-start text-[13px] ${isWishlisted ? 'font-medium text-peri-600' : 'text-ink-400 hover:text-peri-600'}`}
+        >
+          {isWishlisted ? 'Guardado' : 'Guardar'}
+        </button>
+      ) : null}
     </article>
   )
 }

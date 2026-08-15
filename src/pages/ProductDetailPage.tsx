@@ -20,7 +20,7 @@ import { useCart } from '@/hooks/useCart'
 import { useProduct } from '@/hooks/useProduct'
 import { useUiStore } from '@/stores/ui.store'
 import { useWishlist } from '@/hooks/useWishlist'
-import { formatStockLabel } from '@/utils/format'
+import { formatDiscount, formatStockLabel } from '@/utils/format'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -71,6 +71,8 @@ export function ProductDetailPage() {
   const image = product.images[activeImage] ?? product.images[0]
   const wishlisted = has(product.id)
   const sheet = getSpecSheet(product.slug, product.specs, product.sku)
+  const discount = product.compareAtPrice ? formatDiscount(product.price, product.compareAtPrice) : 0
+  const onSale = discount > 0 && !product.priceMax
 
   return (
     <Container className="py-16">
@@ -86,7 +88,8 @@ export function ProductDetailPage() {
           <ProductImage
             src={image}
             alt={product.name}
-            className="aspect-[4/5] rounded-3xl"
+            size="hero"
+            className="aspect-square bg-transparent sm:aspect-[4/5]"
           />
           {product.images.length > 1 ? (
             <div className="mt-4 flex gap-3">
@@ -95,9 +98,11 @@ export function ProductDetailPage() {
                   key={src}
                   type="button"
                   onClick={() => setActiveImage(index)}
-                  className={`size-16 overflow-hidden rounded-xl border ${index === activeImage ? 'border-white' : 'border-transparent opacity-50 hover:opacity-100'}`}
+                  className={`size-16 bg-transparent transition ${
+                    index === activeImage ? 'opacity-100' : 'opacity-40 hover:opacity-100'
+                  }`}
                 >
-                  <ProductImage src={src} className="h-full w-full" />
+                  <ProductImage src={src} size="thumb" className="h-full w-full" />
                 </button>
               ))}
             </div>
@@ -108,15 +113,33 @@ export function ProductDetailPage() {
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-ink-400">
             {category?.name ?? product.brand}
           </p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">{product.name}</h1>
-          <p className="mt-4 max-w-md text-base text-ink-300">{product.shortDescription}</p>
-          {product.isNew ? (
-            <div className="mt-4">
-              <Badge tone="brand">Nuevo</Badge>
+          <h1 className="font-product mt-3 text-4xl font-semibold text-ink-800 sm:text-5xl">{product.name}</h1>
+          <p className="mt-4 max-w-md text-base leading-[1.35] text-ink-500">{product.shortDescription}</p>
+          {onSale || product.isNew ? (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {onSale ? (
+                <>
+                  <span className="rounded-md bg-offer px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
+                    Precio de oferta
+                  </span>
+                  <span className="rounded-md bg-lima px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-ink-800">
+                    Ahorro {discount}%
+                  </span>
+                </>
+              ) : (
+                <Badge tone="brand">Nuevo</Badge>
+              )}
             </div>
           ) : null}
           <div className="mt-6">
-            <Price price={product.price} compareAtPrice={product.compareAtPrice} size="lg" />
+            <Price
+              price={product.price}
+              compareAtPrice={product.compareAtPrice}
+              priceMax={product.priceMax}
+              priceFrom={product.priceFrom}
+              size="lg"
+              showSavings
+            />
           </div>
           <p className="mt-2 text-sm text-ink-500">{formatStockLabel(product.stock)}</p>
 

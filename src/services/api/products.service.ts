@@ -1,5 +1,6 @@
 import { appConfig } from '@/config/app'
 import { categories } from '@/data/categories'
+import { bestsellerSlugs } from '@/data/home'
 import { products } from '@/data/products'
 import type { SortOption } from '@/constants/catalog'
 import type { CatalogFilters, PaginatedResult } from '@/types/catalog'
@@ -85,6 +86,11 @@ export const productsService = {
 
   async getFeatured(limit = 8): Promise<Product[]> {
     await delay()
+    const bySlug = new Map(products.map((product) => [product.slug, product]))
+    const bestsellers = bestsellerSlugs
+      .map((slug) => bySlug.get(slug))
+      .filter((product): product is Product => Boolean(product))
+    if (bestsellers.length > 0) return bestsellers.slice(0, limit)
     return products.filter((product) => product.featured).slice(0, limit)
   },
 

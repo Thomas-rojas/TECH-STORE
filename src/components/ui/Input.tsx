@@ -12,7 +12,7 @@ export function Input({ className, label, id, ...props }: InputProps) {
       <input
         id={id}
         className={cn(
-          'h-12 border-b border-white/15 bg-transparent px-0 text-sm font-normal tracking-normal text-white outline-none transition placeholder:text-ink-500 focus:border-white/50',
+          'h-12 border-b border-black/15 bg-transparent px-0 text-sm font-normal tracking-normal text-ink-900 outline-none transition placeholder:text-ink-400 focus:border-ink-900',
           className,
         )}
         {...props}

@@ -93,7 +93,7 @@ export function CatalogPage() {
       />
 
       <div className="mt-12 mb-14 max-w-3xl">
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        <h1 className="font-display mt-3 text-4xl text-ink-800 sm:text-5xl">
           {activeCategory || brand ? (
             title
           ) : query ? (
@@ -102,6 +102,13 @@ export function CatalogPage() {
             'Todos los productos'
           )}
         </h1>
+        {activeCategory ? (
+          <p className="mt-4 max-w-xl text-base leading-[1.35] text-ink-500">{activeCategory.description}</p>
+        ) : (
+          <p className="mt-4 max-w-xl text-base leading-[1.35] text-ink-500">
+            Inventario sólido, precios en pesos colombianos y seguridad en cada compra.
+          </p>
+        )}
       </div>
 
       <div className="relative mb-16">
@@ -110,7 +117,7 @@ export function CatalogPage() {
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Buscar"
-          className="h-12 w-full rounded-full border border-white/10 bg-ink-900 pl-12 pr-4 text-sm text-white outline-none placeholder:text-ink-500 focus:border-brand-500"
+          className="h-12 w-full rounded-full border border-black/10 bg-ink-100 pl-12 pr-4 text-sm text-ink-900 outline-none placeholder:text-ink-400 focus:border-brand-500"
         />
       </div>
 

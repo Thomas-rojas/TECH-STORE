@@ -21,7 +21,7 @@ export function WishlistPage() {
 
   return (
     <Container className="py-10">
-      <h1 className="mb-12 font-display text-5xl font-medium text-ink-50">Favoritos</h1>
+      <h1 className="mb-12 font-display text-5xl font-medium text-ink-900">Favoritos</h1>
       {productIds.length === 0 ? (
         <EmptyState
           title="Sin favoritos"

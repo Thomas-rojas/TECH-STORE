@@ -19,17 +19,17 @@ export function FeatureCards({ items }: FeatureCardsProps) {
 
   return (
     <section className="mt-24">
-      <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+      <h2 className="text-3xl font-semibold tracking-tight text-ink-900 sm:text-4xl">
         Lo más destacado
       </h2>
       <ul className="mt-10 grid gap-4 md:grid-cols-3">
         {items.map((item) => {
           const Icon = icons[item.icon]
           return (
-            <li key={item.title} className="rounded-3xl bg-ink-900 px-8 py-10">
+            <li key={item.title} className="rounded-3xl bg-ink-100 px-8 py-10">
               <Icon />
-              <h3 className="mt-6 text-xl font-semibold text-white">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink-300">{item.text}</p>
+              <h3 className="mt-6 text-xl font-semibold text-ink-900">{item.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-500">{item.text}</p>
             </li>
           )
         })}

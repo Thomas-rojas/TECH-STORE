@@ -30,24 +30,24 @@ export function CartPage() {
   return (
     <Container className="grid gap-16 py-16 lg:grid-cols-[1fr_280px]">
       <section>
-        <div className="flex items-end justify-between border-b border-white/[0.06] pb-6">
+        <div className="flex items-end justify-between border-b border-black/[0.06] pb-6">
           <div>
             <p className="eyebrow">Pedido</p>
-            <h1 className="mt-3 font-display text-4xl font-medium text-ink-50">Carrito ({itemCount})</h1>
+            <h1 className="mt-3 font-display text-4xl font-medium text-ink-900">Carrito ({itemCount})</h1>
           </div>
           <Button variant="ghost" size="sm" onClick={clear}>
             Vaciar
           </Button>
         </div>
-        <ul className="divide-y divide-white/[0.06]">
+        <ul className="divide-y divide-black/[0.06]">
           {lines.map((line) => (
             <li key={line.productId} className="flex gap-6 py-8">
               <Link to={productPath(line.product.slug)} className="size-28 shrink-0">
-                <ProductImage src={line.product.images[0]} alt={line.product.name} className="h-full w-full rounded-2xl" />
+                <ProductImage src={line.product.images[0]} alt={line.product.name} size="thumb" className="h-full w-full" />
               </Link>
               <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <Link to={productPath(line.product.slug)} className="font-display text-2xl text-ink-50">
+                  <Link to={productPath(line.product.slug)} className="font-display text-2xl text-ink-900">
                     {line.product.name}
                   </Link>
                   <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-ink-400">{line.product.brand}</p>
@@ -61,12 +61,12 @@ export function CartPage() {
                     max={appConfig.cart.maxQuantityPerItem}
                     onChange={(value) => setQuantity(line.productId, value)}
                   />
-                  <span className="w-24 text-right text-ink-50">
+                  <span className="w-24 text-right text-ink-900">
                     {formatCurrency(line.product.price * line.quantity)}
                   </span>
                   <button
                     type="button"
-                    className="text-[10px] uppercase tracking-[0.22em] text-ink-400 hover:text-white"
+                    className="text-[10px] uppercase tracking-[0.22em] text-ink-400 hover:text-ink-900"
                     onClick={() => removeItem(line.productId)}
                   >
                     Quitar
@@ -78,11 +78,11 @@ export function CartPage() {
         </ul>
       </section>
 
-      <aside className="h-fit border-t border-white/[0.06] pt-8 lg:border-t-0 lg:pt-0">
+      <aside className="h-fit border-t border-black/[0.06] pt-8 lg:border-t-0 lg:pt-0">
         <p className="eyebrow">Resumen</p>
         <div className="mt-8 flex items-center justify-between text-sm">
           <span className="uppercase tracking-[0.18em] text-ink-400">Subtotal</span>
-          <span className="text-ink-50">{formatCurrency(subtotal)}</span>
+          <span className="text-ink-900">{formatCurrency(subtotal)}</span>
         </div>
         <Button className="mt-10 w-full" onClick={() => void navigate(ROUTES.checkout)}>
           Continuar

@@ -23,7 +23,7 @@ export function SocialLinks({ className }: SocialLinksProps) {
             target="_blank"
             rel="noreferrer"
             aria-label={link.label}
-            className="text-ink-300 transition hover:text-white"
+            className="text-ink-400 transition hover:text-peri-600"
           >
             <Icon />
           </a>

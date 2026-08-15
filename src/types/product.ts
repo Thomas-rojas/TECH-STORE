@@ -13,6 +13,8 @@ export interface Product {
   highlight: string
   price: number
   compareAtPrice?: number
+  priceMax?: number
+  priceFrom?: boolean
   images: string[]
   categoryId: string
   rating: number

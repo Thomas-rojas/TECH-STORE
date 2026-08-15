@@ -33,7 +33,7 @@ export function StatsBrands() {
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
           {homeStats.map((stat, index) => (
             <div key={stat.label} className="text-center">
-              <p className="text-3xl font-semibold text-white sm:text-4xl">
+              <p className="font-display text-3xl text-ink-800 sm:text-4xl">
                 <StatValue
                   target={stat.target}
                   suffix={stat.suffix}

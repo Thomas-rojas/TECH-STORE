@@ -16,11 +16,11 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
         {items.map((item, index) => (
           <li key={`${item.label}-${index}`} className="flex items-center gap-2">
             {item.href ? (
-              <Link to={item.href} className="hover:text-ink-50">
+              <Link to={item.href} className="hover:text-ink-900">
                 {item.label}
               </Link>
             ) : (
-              <span className="text-ink-50">{item.label}</span>
+              <span className="text-ink-900">{item.label}</span>
             )}
             {index < items.length - 1 ? <span>/</span> : null}
           </li>

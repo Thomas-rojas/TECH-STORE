@@ -1,7 +1,7 @@
 import { Logo } from '@/components/layout/Logo'
 import { BagIcon, ChevronIcon, MenuIcon, SearchIcon, UserIcon } from '@/components/ui/Icons'
 import { NAV_DEPARTMENTS } from '@/constants/nav'
-import { ROUTES, catalogBrandPath, catalogPath } from '@/constants/routes'
+import { ROUTES } from '@/constants/routes'
 import { useCart } from '@/hooks/useCart'
 import { useUiStore } from '@/stores/ui.store'
 import { cn } from '@/utils/cn'
@@ -55,17 +55,17 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-40 transition-colors duration-500',
+        'fixed inset-x-0 top-0 z-40 border-b text-ink-800 transition-all duration-300',
         scrolled || openSlug
-          ? 'border-b border-white/10 bg-ink-950/40 backdrop-blur-md'
-          : 'border-b border-transparent bg-transparent',
+          ? 'border-black/[0.06] bg-ink-100/95 shadow-[0_8px_24px_rgba(89,83,80,0.08)] backdrop-blur-xl'
+          : 'border-black/[0.05] bg-ink-100/90 backdrop-blur-xl',
       )}
     >
       <div className="relative mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <button
             type="button"
-            className="text-white lg:hidden"
+            className="text-ink-500 lg:hidden"
             onClick={openMobileNav}
             aria-label="Abrir menú"
           >
@@ -86,8 +86,8 @@ export function Header() {
                     aria-haspopup="menu"
                     onClick={() => setOpenSlug(isOpen ? null : department.slug)}
                     className={cn(
-                      'flex items-center gap-1 px-3 py-2 text-[13px] font-medium tracking-wide transition',
-                      isOpen ? 'text-white' : 'text-white/75 hover:text-white',
+                      'flex items-center gap-0.5 px-1.5 py-2 text-[12px] font-medium tracking-wide transition sm:px-2',
+                      isOpen ? 'text-ink-800' : 'text-ink-500 hover:text-peri-600',
                     )}
                   >
                     {department.label}
@@ -100,23 +100,16 @@ export function Header() {
                   {isOpen ? (
                     <div
                       role="menu"
-                      className="absolute left-1/2 top-full z-50 mt-2 w-52 -translate-x-1/2 rounded-2xl border border-white/10 bg-ink-950/95 p-2 shadow-2xl backdrop-blur-md"
+                      className="absolute left-1/2 top-full z-50 mt-2 w-56 -translate-x-1/2 rounded-2xl border border-black/[0.06] bg-white p-2 shadow-[0_18px_50px_rgba(89,83,80,0.12)]"
                     >
-                      <Link
-                        to={catalogPath(department.slug)}
-                        role="menuitem"
-                        className="block rounded-xl px-3 py-2.5 text-[13px] text-white/70 transition hover:bg-white/5 hover:text-white"
-                      >
-                        Ver todos
-                      </Link>
-                      {department.brands.map((brand) => (
+                      {department.items.map((entry) => (
                         <Link
-                          key={brand}
-                          to={catalogBrandPath(department.slug, brand)}
+                          key={entry.href}
+                          to={entry.href}
                           role="menuitem"
-                          className="block rounded-xl px-3 py-2.5 text-[13px] text-white/70 transition hover:bg-white/5 hover:text-white"
+                          className="block rounded-xl px-3 py-2.5 text-[13px] text-ink-500 transition hover:bg-brand-50 hover:text-ink-800"
                         >
-                          {brand}
+                          {entry.label}
                         </Link>
                       ))}
                     </div>
@@ -131,7 +124,7 @@ export function Header() {
           <button
             type="button"
             onClick={openSearch}
-            className="text-white/90 transition hover:text-white"
+            className="text-ink-500 transition hover:text-peri-600"
             aria-label="Buscar"
           >
             <SearchIcon />
@@ -139,17 +132,17 @@ export function Header() {
           <button
             type="button"
             onClick={openCart}
-            className="relative text-white/90 transition hover:text-white"
+            className="relative text-ink-500 transition hover:text-peri-600"
             aria-label="Carrito"
           >
             <BagIcon />
             {itemCount > 0 ? (
-              <span className="absolute -right-0.5 -top-0.5 size-1.5 rounded-full bg-white" />
+              <span className="absolute -right-0.5 -top-0.5 size-1.5 rounded-full bg-peri-500" />
             ) : null}
           </button>
           <Link
             to={ROUTES.wishlist}
-            className="text-white/90 transition hover:text-white"
+            className="text-ink-500 transition hover:text-peri-600"
             aria-label="Cuenta"
           >
             <UserIcon />

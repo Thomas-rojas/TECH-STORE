@@ -25,7 +25,7 @@ function FilterLink({
 }) {
   const className = cn(
     'block py-2 text-sm tracking-wide transition',
-    active ? 'text-white' : 'text-ink-400 hover:text-white',
+    active ? 'text-ink-900' : 'text-ink-400 hover:text-ink-900',
   )
 
   if (!to) {

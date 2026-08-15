@@ -12,17 +12,17 @@ export function SpecSheet({ groups, productName }: SpecSheetProps) {
   return (
     <section className="mt-32 pb-8">
       <div className="max-w-[980px]">
-        <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-[56px] sm:leading-none">
+        <h2 className="text-4xl font-semibold tracking-tight text-ink-900 sm:text-[56px] sm:leading-none">
           Especificaciones técnicas
         </h2>
-        {productName ? <p className="mt-4 text-xl text-ink-300">{productName}</p> : null}
+        {productName ? <p className="mt-4 text-xl text-ink-500">{productName}</p> : null}
 
         <div className="mt-16">
           {groups.map((group, index) => (
             <details
               key={group.title}
               open={index === 0}
-              className="group border-t border-white/25"
+              className="group border-t border-black/10"
             >
               <summary
                 className={cn(
@@ -30,18 +30,18 @@ export function SpecSheet({ groups, productName }: SpecSheetProps) {
                   'marker:hidden [&::-webkit-details-marker]:hidden',
                 )}
               >
-                <h3 className="text-[22px] font-semibold tracking-tight text-white sm:text-[28px]">
+                <h3 className="text-[22px] font-semibold tracking-tight text-ink-900 sm:text-[28px]">
                   {group.title}
                 </h3>
                 <span
                   aria-hidden
-                  className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition-transform duration-200 group-open:rotate-45 sm:size-9"
+                  className="flex size-8 shrink-0 items-center justify-center rounded-full border border-black/20 text-ink-900 transition-transform duration-200 group-open:rotate-45 sm:size-9"
                 >
                   <PlusMark />
                 </span>
               </summary>
 
-              <ul className="max-w-xl space-y-2 pb-10 text-[17px] leading-[1.47] text-white sm:pb-12">
+              <ul className="max-w-xl space-y-2 pb-10 text-[17px] leading-[1.47] text-ink-600 sm:pb-12">
                 {group.rows.map((row) => (
                   <li key={`${group.title}-${row.label}`}>
                     {formatSpecLine(row.label, row.value)}
@@ -50,7 +50,7 @@ export function SpecSheet({ groups, productName }: SpecSheetProps) {
               </ul>
             </details>
           ))}
-          <div className="border-t border-white/25" />
+          <div className="border-t border-black/10" />
         </div>
       </div>
     </section>
