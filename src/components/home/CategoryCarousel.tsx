@@ -20,7 +20,7 @@ export function CategoryCarousel() {
             <li key={item.id}>
               <Link
                 to={item.href}
-                className="group flex flex-col items-center rounded-[28px] bg-ink-100 px-4 pb-6 pt-5 text-center transition duration-500 hover:-translate-y-1.5 hover:bg-white hover:shadow-[0_24px_60px_rgba(89,83,80,0.1)]"
+                className="group flex flex-col items-center rounded-[28px] bg-ink-100 px-4 pb-6 pt-5 text-center transition duration-500 hover:-translate-y-1.5 hover:bg-surface hover:shadow-[0_24px_60px_rgba(89,83,80,0.1)]"
               >
                 <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-full bg-white">
                   <img
@@ -33,7 +33,7 @@ export function CategoryCarousel() {
                     )}
                   />
                 </div>
-                <p className="font-product mt-4 text-[13px] font-semibold tracking-wide text-ink-700 transition group-hover:text-peri-600">
+                <p className="font-product mt-4 text-[13px] font-semibold tracking-wide text-ink-700 transition group-hover:text-brand-700">
                   {item.name}
                 </p>
               </Link>

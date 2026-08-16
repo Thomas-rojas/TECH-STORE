@@ -15,6 +15,15 @@
       rel="stylesheet"
     />
     <title>ImportCAS</title>
+    <script>
+      try {
+        var saved = JSON.parse(localStorage.getItem('importcas.theme') || 'null')
+        if (saved === 'dark' || (saved && saved.theme === 'dark')) {
+          document.documentElement.classList.add('dark')
+          document.documentElement.style.colorScheme = 'dark'
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

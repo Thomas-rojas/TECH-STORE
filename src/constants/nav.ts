@@ -113,7 +113,7 @@ export const SOCIAL_LINKS = [
   {
     id: 'instagram',
     label: 'Instagram',
-    href: 'https://instagram.com/importcas',
+    href: 'https://www.instagram.com/importcas.col/',
   },
   {
     id: 'whatsapp',

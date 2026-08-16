@@ -52,7 +52,11 @@ export function CartPage() {
                   </Link>
                   <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-ink-400">{line.product.brand}</p>
                   <div className="mt-3">
-                    <Price price={line.product.price} size="sm" />
+                    <Price
+                      price={line.unitPrice}
+                      compareAtPrice={line.unitPrice < line.product.price ? line.product.price : undefined}
+                      size="sm"
+                    />
                   </div>
                 </div>
                 <div className="flex items-center gap-6">
@@ -61,8 +65,14 @@ export function CartPage() {
                     max={appConfig.cart.maxQuantityPerItem}
                     onChange={(value) => setQuantity(line.productId, value)}
                   />
-                  <span className="w-24 text-right text-ink-900">
-                    {formatCurrency(line.product.price * line.quantity)}
+                  <span
+                    className={
+                      line.unitPrice < line.product.price
+                        ? 'text-offer-gradient w-24 text-right font-semibold'
+                        : 'w-24 text-right text-ink-900'
+                    }
+                  >
+                    {formatCurrency(line.unitPrice * line.quantity)}
                   </span>
                   <button
                     type="button"

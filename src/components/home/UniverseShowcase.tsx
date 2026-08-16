@@ -19,7 +19,7 @@ export function UniverseShowcase() {
             <Link
               key={panel.id}
               to={panel.href}
-              className="group flex flex-col rounded-[28px] bg-ink-100 px-8 pb-8 pt-9 transition duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_28px_64px_rgba(89,83,80,0.08)]"
+              className="group flex flex-col rounded-[28px] bg-ink-100 px-8 pb-8 pt-9 transition duration-500 hover:-translate-y-1 hover:bg-surface hover:shadow-[0_28px_64px_rgba(89,83,80,0.08)]"
             >
               <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-ink-400">
                 {panel.kicker}

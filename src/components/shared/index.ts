@@ -1,6 +1,7 @@
 export { Breadcrumbs, type BreadcrumbItem } from '@/components/shared/Breadcrumbs'
 export { EmptyState } from '@/components/shared/EmptyState'
 export { FilterPanel } from '@/components/shared/FilterPanel'
+export { OfferBadges } from '@/components/shared/OfferBadges'
 export { Pagination } from '@/components/shared/Pagination'
 export { Price } from '@/components/shared/Price'
 export { ProductCard } from '@/components/shared/ProductCard'

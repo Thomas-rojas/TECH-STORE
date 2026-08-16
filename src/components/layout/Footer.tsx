@@ -2,6 +2,7 @@ import { Logo } from '@/components/layout/Logo'
 import { SocialLinks } from '@/components/layout/SocialLinks'
 import { appConfig } from '@/config/app'
 import { FOOTER_LINKS, HEADER_LINKS } from '@/constants/nav'
+import { ROUTES } from '@/constants/routes'
 import { Link } from 'react-router-dom'
 
 export function Footer() {
@@ -44,6 +45,10 @@ export function Footer() {
       </div>
       <div className="border-t border-black/[0.05] py-6 text-center text-sm text-ink-400">
         © {new Date().getFullYear()} {appConfig.name} · Seguridad en cada compra
+        <span className="mx-2">·</span>
+        <Link to={ROUTES.adminLogin} className="hover:text-peri-600">
+          Administración
+        </Link>
       </div>
     </footer>
   )

@@ -12,10 +12,10 @@ interface LogoProps {
 export function Logo({ className, wordmarkClassName }: LogoProps) {
   return (
     <Link to={ROUTES.home} className={cn('flex items-center gap-2.5 text-ink-800', className)}>
-      <LogoMark className="h-10 w-auto" />
+      <LogoMark className="h-9 w-auto translate-y-[1px] object-contain object-center sm:h-10" />
       <span
         className={cn(
-          'font-display text-[17px] font-bold tracking-tight',
+          'leading-none font-display text-[17px] font-bold tracking-tight',
           wordmarkClassName ?? 'text-ink-800',
         )}
       >

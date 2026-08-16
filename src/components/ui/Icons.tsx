@@ -13,7 +13,7 @@ export function LogoMark({ className }: { className?: string }) {
     <img
       src="/brand/logo-cas.png"
       alt=""
-      className={cn('h-10 w-auto object-contain', className)}
+      className={cn('h-10 w-auto object-contain object-center', className)}
     />
   )
 }
@@ -139,6 +139,23 @@ export function WhatsAppIcon({ className }: { className?: string }) {
         {...stroke}
       />
       <path d="M9.2 9.4c.2-.5.4-.5.7-.5h.6c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.5l-.5.5c-.2.2-.2.4 0 .6 1 1.4 2.2 2.2 2.5 2.4.3.2.5.2.7 0l.6-.6c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.6c0 .3 0 .5-.5.7A4.8 4.8 0 0 1 14 17.2c-2.4 0-5.2-2.2-5.8-5.2-.2-.8-.1-1.8 1-2.6Z" {...stroke} />
+    </svg>
+  )
+}
+
+export function SunIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={cn('size-5', className)} aria-hidden>
+      <circle cx="12" cy="12" r="4" {...stroke} />
+      <path d="M12 3.5v1.8M12 18.7v1.8M4.6 4.6l1.3 1.3M18.1 18.1l1.3 1.3M3.5 12h1.8M18.7 12h1.8M4.6 19.4l1.3-1.3M18.1 5.9l1.3-1.3" {...stroke} />
+    </svg>
+  )
+}
+
+export function MoonIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={cn('size-5', className)} aria-hidden>
+      <path d="M16.2 13.6A6.2 6.2 0 0 1 10.4 5.5 6.4 6.4 0 1 0 18.5 14a6.2 6.2 0 0 1-2.3-.4Z" {...stroke} />
     </svg>
   )
 }

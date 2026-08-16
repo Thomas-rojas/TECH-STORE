@@ -1,10 +1,12 @@
 import { productsService } from '@/services/api/products.service'
+import { useCatalogStore } from '@/stores/catalog.store'
 import type { Product } from '@/types/product'
 import { useEffect, useState } from 'react'
 
 export function useFeaturedProducts(limit = 8) {
   const [products, setProducts] = useState<Product[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const revision = useCatalogStore((state) => state.revision)
 
   useEffect(() => {
     let active = true
@@ -16,7 +18,7 @@ export function useFeaturedProducts(limit = 8) {
     return () => {
       active = false
     }
-  }, [limit])
+  }, [limit, revision])
 
   return { products, isLoading }
 }

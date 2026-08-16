@@ -1,4 +1,5 @@
 import { formatCurrency, formatDiscount } from '@/utils/format'
+import { cn } from '@/utils/cn'
 
 interface PriceProps {
   price: number
@@ -31,7 +32,13 @@ export function Price({
         {priceFrom && !priceMax ? (
           <span className="text-[12px] font-medium text-ink-400">Desde</span>
         ) : null}
-        <span className={`font-product font-semibold ${onSale ? 'text-offer' : 'text-ink-800'} ${priceClass}`}>
+        <span
+          className={cn(
+            'font-product font-semibold',
+            onSale ? 'text-offer-gradient' : 'text-ink-800',
+            priceClass,
+          )}
+        >
           {display}
         </span>
         {onSale ? (
@@ -41,7 +48,7 @@ export function Price({
         ) : null}
       </div>
       {showSavings && onSale ? (
-        <p className="text-[12px] font-medium text-ink-500">
+        <p className="text-offer-gradient text-[12px] font-semibold">
           Ahorras {formatCurrency(compareAtPrice! - price)}
         </p>
       ) : null}

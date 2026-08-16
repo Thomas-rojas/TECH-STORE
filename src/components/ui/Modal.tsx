@@ -1,4 +1,5 @@
 import { cn } from '@/utils/cn'
+import { usePresence } from '@/hooks/usePresence'
 import { useEffect, type ReactNode } from 'react'
 
 interface ModalProps {
@@ -10,6 +11,8 @@ interface ModalProps {
 }
 
 export function Modal({ open, title, onClose, children, className }: ModalProps) {
+  const { mounted, entered } = usePresence(open, 320)
+
   useEffect(() => {
     if (!open) return
     const onKey = (event: KeyboardEvent) => {
@@ -19,19 +22,20 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
     return () => window.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
-  if (!open) return null
+  if (!mounted) return null
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       <button
         type="button"
-        className="absolute inset-0 bg-black/40"
+        className={cn('drawer-backdrop', entered && 'is-open')}
         aria-label="Cerrar"
         onClick={onClose}
       />
       <div
         className={cn(
-          'relative z-10 flex h-full w-full max-w-md flex-col border-l border-black/[0.06] bg-white',
+          'drawer-panel-right relative z-10 flex h-full w-full max-w-md flex-col border-l border-black/[0.06] bg-surface',
+          entered && 'is-open',
           className,
         )}
         role="dialog"
@@ -45,7 +49,7 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
           <button
             type="button"
             onClick={onClose}
-            className="text-[10px] uppercase tracking-[0.28em] text-ink-400 hover:text-ink-900"
+            className="text-[10px] uppercase tracking-[0.28em] text-ink-400 transition hover:text-ink-900"
           >
             Cerrar
           </button>

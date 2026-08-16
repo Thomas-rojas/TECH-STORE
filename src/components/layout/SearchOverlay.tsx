@@ -1,13 +1,16 @@
 import { Button } from '@/components/ui/Button'
 import { appConfig } from '@/config/app'
 import { ROUTES, searchPath } from '@/constants/routes'
+import { usePresence } from '@/hooks/usePresence'
 import { useUiStore } from '@/stores/ui.store'
+import { cn } from '@/utils/cn'
 import { useEffect, useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export function SearchOverlay() {
   const open = useUiStore((state) => state.isSearchOpen)
   const close = useUiStore((state) => state.closeSearch)
+  const { mounted, entered } = usePresence(open, 280)
   const [query, setQuery] = useState('')
   const navigate = useNavigate()
 
@@ -28,19 +31,30 @@ export function SearchOverlay() {
     setQuery('')
   }
 
-  if (!open) return null
+  if (!mounted) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-white/95 px-4 pt-32 backdrop-blur-sm">
+    <div
+      className={cn(
+        'fixed inset-0 z-50 flex items-start justify-center bg-surface/95 px-4 pt-32 backdrop-blur-sm transition-opacity duration-300 ease-out',
+        entered ? 'opacity-100' : 'opacity-0',
+      )}
+    >
       <button type="button" className="absolute inset-0" aria-label="Cerrar búsqueda" onClick={close} />
-      <form onSubmit={onSubmit} className="relative z-10 w-full max-w-xl">
+      <form
+        onSubmit={onSubmit}
+        className={cn(
+          'relative z-10 w-full max-w-xl transition duration-300 ease-out',
+          entered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0',
+        )}
+      >
         <p className="eyebrow mb-6">Buscar</p>
         <input
           autoFocus
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder={`Buscar en ${appConfig.name}`}
-          className="h-16 w-full border-b border-black/15 bg-transparent text-2xl font-display text-ink-900 outline-none placeholder:text-ink-400"
+          className="h-16 w-full border-b border-black/15 bg-transparent font-display text-2xl text-ink-900 outline-none placeholder:text-ink-400"
         />
         <div className="mt-8 flex justify-end gap-4">
           <Button variant="ghost" onClick={close}>

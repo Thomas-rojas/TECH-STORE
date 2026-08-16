@@ -1,5 +1,6 @@
 import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
 import { EmptyState } from '@/components/shared/EmptyState'
+import { OfferBadges } from '@/components/shared/OfferBadges'
 import { Price } from '@/components/shared/Price'
 import { QuantitySelector } from '@/components/shared/QuantitySelector'
 import { FeatureCards } from '@/components/product/FeatureCards'
@@ -28,7 +29,7 @@ export function ProductDetailPage() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const { product, category, isLoading } = useProduct(slug)
-  const { addItem } = useCart()
+  const { addItem, wholesale } = useCart()
   const { toggle, has } = useWishlist()
   const openCart = useUiStore((state) => state.openCart)
   const [quantity, setQuantity] = useState(1)
@@ -116,16 +117,9 @@ export function ProductDetailPage() {
           <h1 className="font-product mt-3 text-4xl font-semibold text-ink-800 sm:text-5xl">{product.name}</h1>
           <p className="mt-4 max-w-md text-base leading-[1.35] text-ink-500">{product.shortDescription}</p>
           {onSale || product.isNew ? (
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-4">
               {onSale ? (
-                <>
-                  <span className="rounded-md bg-offer px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white">
-                    Precio de oferta
-                  </span>
-                  <span className="rounded-md bg-lima px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-ink-800">
-                    Ahorro {discount}%
-                  </span>
-                </>
+                <OfferBadges discount={discount} className="flex flex-row flex-wrap gap-1.5" />
               ) : (
                 <Badge tone="brand">Nuevo</Badge>
               )}
@@ -155,7 +149,10 @@ export function ProductDetailPage() {
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <QuantitySelector
               value={quantity}
-              max={Math.min(appConfig.cart.maxQuantityPerItem, Math.max(product.stock, 1))}
+              max={Math.min(
+                wholesale ? appConfig.wholesale.maxQuantityPerItem : appConfig.cart.retailMaxQuantity,
+                Math.max(product.stock, 1),
+              )}
               onChange={setQuantity}
             />
             <Button

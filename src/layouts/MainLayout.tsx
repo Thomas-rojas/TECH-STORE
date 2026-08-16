@@ -1,3 +1,4 @@
+import { AuthDialog } from '@/components/layout/AuthDialog'
 import { CartDrawer } from '@/components/layout/CartDrawer'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
@@ -27,7 +28,8 @@ export function MainLayout() {
       <MobileNav />
       <SearchOverlay />
       <CartDrawer />
-      <main className={isHome ? 'flex-1' : 'flex-1 pt-20'}>
+      <AuthDialog />
+      <main key={pathname} className={isHome ? 'page-fade flex-1' : 'page-fade flex-1 pt-20'}>
         <Outlet />
       </main>
       <Footer />

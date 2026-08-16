@@ -45,7 +45,11 @@ export function CartDrawer() {
                   <Link to={productPath(line.product.slug)} onClick={closeCart} className="line-clamp-1 font-display text-xl text-ink-900">
                     {line.product.name}
                   </Link>
-                  <Price price={line.product.price} size="sm" />
+                  <Price
+                    price={line.unitPrice}
+                    compareAtPrice={line.unitPrice < line.product.price ? line.product.price : undefined}
+                    size="sm"
+                  />
                   <div className="mt-2 flex items-center justify-between">
                     <QuantitySelector
                       value={line.quantity}

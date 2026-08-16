@@ -7,4 +7,5 @@ export interface CartItem {
 
 export interface CartLine extends CartItem {
   product: Product
+  unitPrice: number
 }

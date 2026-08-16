@@ -9,7 +9,7 @@ import { WholesaleBanner } from '@/components/home/WholesaleBanner'
 
 export function HomePage() {
   return (
-    <div className="bg-white">
+    <div>
       <HomeHero />
       <TrustStrip />
       <UniverseShowcase />

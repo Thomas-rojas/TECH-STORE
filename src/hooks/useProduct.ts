@@ -1,5 +1,6 @@
 import { categoriesService } from '@/services/api/categories.service'
 import { productsService } from '@/services/api/products.service'
+import { useCatalogStore } from '@/stores/catalog.store'
 import type { Category } from '@/types/category'
 import type { Product } from '@/types/product'
 import { useEffect, useState } from 'react'
@@ -14,6 +15,7 @@ export function useProduct(slug: string | undefined): UseProductResult {
   const [product, setProduct] = useState<Product | null>(null)
   const [category, setCategory] = useState<Category | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const revision = useCatalogStore((state) => state.revision)
 
   useEffect(() => {
     if (!slug) {
@@ -38,7 +40,7 @@ export function useProduct(slug: string | undefined): UseProductResult {
     return () => {
       active = false
     }
-  }, [slug])
+  }, [slug, revision])
 
   return { product, category, isLoading }
 }

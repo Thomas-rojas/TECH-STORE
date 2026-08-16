@@ -24,7 +24,7 @@ export function HomeHero() {
 
   return (
     <section
-      className="relative overflow-hidden bg-white"
+      className="relative overflow-hidden bg-surface"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

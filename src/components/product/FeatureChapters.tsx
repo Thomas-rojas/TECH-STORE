@@ -1,3 +1,4 @@
+import { ProductImage } from '@/components/shared/ProductImage'
 import type { FeatureChapter } from '@/data/productStories'
 
 interface FeatureChaptersProps {
@@ -25,13 +26,8 @@ export function FeatureChapters({ items, images = [], productName }: FeatureChap
             </div>
 
             {image ? (
-              <div className="mx-auto mt-14 max-w-4xl bg-transparent">
-                <img
-                  src={image}
-                  alt={productName}
-                  referrerPolicy="no-referrer"
-                  className="mx-auto aspect-[16/10] h-auto w-full object-contain object-center"
-                />
+              <div className="mx-auto mt-14 max-w-4xl overflow-hidden rounded-[28px] bg-ink-100">
+                <ProductImage src={image} alt={productName} className="aspect-[16/10]" size="hero" />
               </div>
             ) : null}
           </div>

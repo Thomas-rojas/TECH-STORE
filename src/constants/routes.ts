@@ -8,6 +8,19 @@ export const ROUTES = {
   wishlist: '/favoritos',
   privacy: '/privacidad',
   terms: '/terminos',
+  admin: '/admin',
+  adminLogin: '/admin/entrar',
+  adminProducts: '/admin/productos',
+  adminPrices: '/admin/precios',
+  adminPromos: '/admin/promociones',
+  adminOrders: '/admin/pedidos',
+  adminCustomers: '/admin/clientes',
+  adminPayments: '/admin/pagos',
+  adminCash: '/admin/efectivo',
+  adminPassword: '/admin/clave',
+  adminWholesale: '/admin/mayorista',
+  account: '/cuenta',
+  wholesale: '/mayorista',
 } as const
 
 export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES]

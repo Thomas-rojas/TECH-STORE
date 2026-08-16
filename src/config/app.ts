@@ -11,6 +11,10 @@ export const appConfig = {
     maxCompareAtDiscount: 0.7,
   },
   cart: {
-    maxQuantityPerItem: 10,
+    maxQuantityPerItem: 99,
+    retailMaxQuantity: 10,
+  },
+  wholesale: {
+    maxQuantityPerItem: 99,
   },
 } as const

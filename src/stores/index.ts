@@ -1,3 +1,8 @@
+export { useAdminStore } from '@/stores/admin.store'
 export { useCartStore } from '@/stores/cart.store'
+export { useCatalogStore } from '@/stores/catalog.store'
+export { useCustomerAuthStore } from '@/stores/customer-auth.store'
+export { useThemeStore } from '@/stores/theme.store'
 export { useUiStore } from '@/stores/ui.store'
+export { useWholesaleStore } from '@/stores/wholesale.store'
 export { useWishlistStore } from '@/stores/wishlist.store'

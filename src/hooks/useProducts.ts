@@ -1,4 +1,5 @@
 import { productsService } from '@/services/api/products.service'
+import { useCatalogStore } from '@/stores/catalog.store'
 import type { CatalogFilters, PaginatedResult } from '@/types/catalog'
 import type { Product } from '@/types/product'
 import { useEffect, useState } from 'react'
@@ -11,6 +12,8 @@ interface UseProductsResult {
 export function useProducts(filters: CatalogFilters): UseProductsResult {
   const [data, setData] = useState<PaginatedResult<Product> | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+
+  const revision = useCatalogStore((state) => state.revision)
 
   useEffect(() => {
     let active = true
@@ -25,7 +28,7 @@ export function useProducts(filters: CatalogFilters): UseProductsResult {
     return () => {
       active = false
     }
-  }, [filters])
+  }, [filters, revision])
 
   return { data, isLoading }
 }

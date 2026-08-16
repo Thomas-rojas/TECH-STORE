@@ -18,7 +18,7 @@ export function FeaturedBento() {
             <p className="eyebrow">Apple · Alexa · Audio · Gaming</p>
             <h2 className="font-display mt-2 text-3xl text-ink-800 sm:text-4xl">Más vendidos</h2>
           </div>
-          <Link to={ROUTES.catalog} className="text-sm text-peri-600 hover:text-peri-700">
+          <Link to={ROUTES.catalog} className="text-sm text-peri-600 hover:text-brand-600">
             Ver todo el catálogo
           </Link>
         </div>

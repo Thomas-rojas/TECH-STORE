@@ -1,10 +1,14 @@
 import { appConfig } from '@/config/app'
 import { categories } from '@/data/categories'
 import { bestsellerSlugs } from '@/data/home'
-import { products } from '@/data/products'
+import { useCatalogStore } from '@/stores/catalog.store'
 import type { SortOption } from '@/constants/catalog'
 import type { CatalogFilters, PaginatedResult } from '@/types/catalog'
 import type { Product } from '@/types/product'
+
+function catalog(): Product[] {
+  return useCatalogStore.getState().products
+}
 
 function delay(ms = 180): Promise<void> {
   return new Promise((resolve) => {
@@ -56,7 +60,7 @@ export const productsService = {
   async list(filters: CatalogFilters): Promise<PaginatedResult<Product>> {
     await delay()
     const filtered = sortProducts(
-      products.filter((product) => matchesFilters(product, filters)),
+      catalog().filter((product) => matchesFilters(product, filters)),
       filters.sort,
     )
     const pageSize = appConfig.catalog.pageSize
@@ -75,31 +79,33 @@ export const productsService = {
 
   async getBySlug(slug: string): Promise<Product | null> {
     await delay()
-    return products.find((product) => product.slug === slug) ?? null
+    return catalog().find((product) => product.slug === slug) ?? null
   },
 
   async getByIds(ids: string[]): Promise<Product[]> {
     await delay()
     const idSet = new Set(ids)
-    return products.filter((product) => idSet.has(product.id))
+    return catalog().filter((product) => idSet.has(product.id))
   },
 
   async getFeatured(limit = 8): Promise<Product[]> {
     await delay()
-    const bySlug = new Map(products.map((product) => [product.slug, product]))
+    const all = catalog()
+    const bySlug = new Map(all.map((product) => [product.slug, product]))
     const bestsellers = bestsellerSlugs
       .map((slug) => bySlug.get(slug))
       .filter((product): product is Product => Boolean(product))
     if (bestsellers.length > 0) return bestsellers.slice(0, limit)
-    return products.filter((product) => product.featured).slice(0, limit)
+    return all.filter((product) => product.featured).slice(0, limit)
   },
 
   getBrands(): string[] {
-    return [...new Set(products.map((product) => product.brand))].sort()
+    return [...new Set(catalog().map((product) => product.brand))].sort()
   },
 
   getPriceBounds(): { min: number; max: number } {
-    const prices = products.map((product) => product.price)
+    const prices = catalog().map((product) => product.price)
+    if (prices.length === 0) return { min: 0, max: 0 }
     return {
       min: Math.min(...prices),
       max: Math.max(...prices),
