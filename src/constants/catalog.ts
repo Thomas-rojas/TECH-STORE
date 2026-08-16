@@ -1,7 +1,5 @@
 export const SORT_OPTIONS = {
   featured: 'featured',
-  priceAsc: 'price-asc',
-  priceDesc: 'price-desc',
   rating: 'rating',
   newest: 'newest',
 } as const
@@ -10,8 +8,6 @@ export type SortOption = (typeof SORT_OPTIONS)[keyof typeof SORT_OPTIONS]
 
 export const SORT_LABELS: Record<SortOption, string> = {
   featured: 'Destacados',
-  'price-asc': 'Precio: menor a mayor',
-  'price-desc': 'Precio: mayor a menor',
   rating: 'Mejor valorados',
   newest: 'Más recientes',
 }

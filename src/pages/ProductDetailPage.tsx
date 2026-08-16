@@ -1,7 +1,5 @@
 import { Breadcrumbs } from '@/components/shared/Breadcrumbs'
 import { EmptyState } from '@/components/shared/EmptyState'
-import { OfferBadges } from '@/components/shared/OfferBadges'
-import { Price } from '@/components/shared/Price'
 import { QuantitySelector } from '@/components/shared/QuantitySelector'
 import { FeatureCards } from '@/components/product/FeatureCards'
 import { FeatureChapters } from '@/components/product/FeatureChapters'
@@ -21,7 +19,7 @@ import { useCart } from '@/hooks/useCart'
 import { useProduct } from '@/hooks/useProduct'
 import { useUiStore } from '@/stores/ui.store'
 import { useWishlist } from '@/hooks/useWishlist'
-import { formatDiscount, formatStockLabel } from '@/utils/format'
+import { formatStockLabel } from '@/utils/format'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -72,8 +70,6 @@ export function ProductDetailPage() {
   const image = product.images[activeImage] ?? product.images[0]
   const wishlisted = has(product.id)
   const sheet = getSpecSheet(product.slug, product.specs, product.sku)
-  const discount = product.compareAtPrice ? formatDiscount(product.price, product.compareAtPrice) : 0
-  const onSale = discount > 0 && !product.priceMax
 
   return (
     <Container className="py-16">
@@ -116,26 +112,12 @@ export function ProductDetailPage() {
           </p>
           <h1 className="font-product mt-3 text-4xl font-semibold text-ink-800 sm:text-5xl">{product.name}</h1>
           <p className="mt-4 max-w-md text-base leading-[1.35] text-ink-500">{product.shortDescription}</p>
-          {onSale || product.isNew ? (
+          {product.isNew ? (
             <div className="mt-4">
-              {onSale ? (
-                <OfferBadges discount={discount} className="flex flex-row flex-wrap gap-1.5" />
-              ) : (
-                <Badge tone="brand">Nuevo</Badge>
-              )}
+              <Badge tone="brand">Nuevo</Badge>
             </div>
           ) : null}
-          <div className="mt-6">
-            <Price
-              price={product.price}
-              compareAtPrice={product.compareAtPrice}
-              priceMax={product.priceMax}
-              priceFrom={product.priceFrom}
-              size="lg"
-              showSavings
-            />
-          </div>
-          <p className="mt-2 text-sm text-ink-500">{formatStockLabel(product.stock)}</p>
+          <p className="mt-6 text-sm text-ink-500">{formatStockLabel(product.stock)}</p>
 
           <ProductOptions
             colors={story.colors}

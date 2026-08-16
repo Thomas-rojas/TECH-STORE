@@ -1,9 +1,6 @@
-import { OfferBadges } from '@/components/shared/OfferBadges'
-import { Price } from '@/components/shared/Price'
 import { ProductImage } from '@/components/shared/ProductImage'
 import { productPath } from '@/constants/routes'
 import type { Product } from '@/types/product'
-import { formatDiscount } from '@/utils/format'
 import { Link } from 'react-router-dom'
 
 interface ProductCardProps {
@@ -15,8 +12,6 @@ interface ProductCardProps {
 
 export function ProductCard({ product, isWishlisted = false, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const outOfStock = product.stock <= 0
-  const discount = product.compareAtPrice ? formatDiscount(product.price, product.compareAtPrice) : 0
-  const onSale = discount > 0 && !product.priceMax
 
   return (
     <article className="group flex h-full flex-col">
@@ -25,7 +20,7 @@ export function ProductCard({ product, isWishlisted = false, onAddToCart, onTogg
           <ProductImage src={product.images[0]} alt={product.name} className="aspect-square" />
         </Link>
         <div className="absolute left-3 top-3 flex flex-col items-start gap-1.5">
-          {onSale ? <OfferBadges discount={discount} /> : product.isNew ? (
+          {product.isNew ? (
             <span className="rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-ink-600">
               Nuevo
             </span>
@@ -53,15 +48,6 @@ export function ProductCard({ product, isWishlisted = false, onAddToCart, onTogg
       >
         {product.name}
       </Link>
-      <div className="mt-2">
-        <Price
-          price={product.price}
-          compareAtPrice={product.compareAtPrice}
-          priceMax={product.priceMax}
-          priceFrom={product.priceFrom}
-          showSavings
-        />
-      </div>
       {onToggleWishlist ? (
         <button
           type="button"

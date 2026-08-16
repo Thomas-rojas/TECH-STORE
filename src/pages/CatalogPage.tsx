@@ -106,7 +106,7 @@ export function CatalogPage() {
           <p className="mt-4 max-w-xl text-base leading-[1.35] text-ink-500">{activeCategory.description}</p>
         ) : (
           <p className="mt-4 max-w-xl text-base leading-[1.35] text-ink-500">
-            Inventario sólido, precios en pesos colombianos y seguridad en cada compra.
+            Inventario sólido y seguridad en cada compra.
           </p>
         )}
       </div>

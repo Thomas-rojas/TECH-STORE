@@ -43,10 +43,6 @@ function sortProducts(items: Product[], sort: SortOption): Product[] {
   const next = [...items]
 
   switch (sort) {
-    case 'price-asc':
-      return next.sort((a, b) => a.price - b.price)
-    case 'price-desc':
-      return next.sort((a, b) => b.price - a.price)
     case 'rating':
       return next.sort((a, b) => b.rating - a.rating)
     case 'newest':
