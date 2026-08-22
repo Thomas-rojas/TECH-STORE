@@ -11,7 +11,7 @@ const stroke = {
 export function LogoMark({ className }: { className?: string }) {
   return (
     <img
-      src="/brand/logo-mark.png"
+      src="/brand/logo-mark.png?v=3"
       alt=""
       className={cn('h-10 w-auto object-contain object-center', className)}
     />

@@ -1,0 +1,21 @@
+{
+  "name": "ImportCAS",
+  "short_name": "ImportCAS",
+  "description": "ImportCAS — Tu acceso directo a la tecnología en Colombia: Confianza, Claridad y Tranquilidad.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#66C9CF",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

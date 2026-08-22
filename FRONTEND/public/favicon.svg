@@ -1,5 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <path d="M7 19h18v8H7z" stroke="#64cad4" stroke-width="2.2" stroke-linejoin="round"/>
-  <path d="M7 19 4 14M25 19l3-5" stroke="#64cad4" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M7 19c0-8 4.5-14 9-14s9 6 9 14" stroke="#64cad4" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Simplified ImportCAS hat isotipo — thicker strokes for 16–32px clarity -->
+  <g stroke="#66C9CF" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5.5 18.8C5.5 11.2 10.8 5.6 16 5.6"/>
+    <path d="M16 5.6c5.2 0 10.5 5.6 10.5 13.2"/>
+    <path d="M4.2 19.6h8.6L10.8 26.2H3.4z"/>
+    <path d="M27.8 19.6h-8.6l2 6.6h7.4z"/>
+    <!-- condensed cas mark -->
+    <path d="M11.2 16.2c.15-2 1.55-3.25 3.25-3.25 1.5 0 2.55 1 2.55 2.35 0 2.1-2.65 2.25-2.55 4.15"/>
+    <path d="M16.9 13.15c1.55.05 4.55.55 4.55 3.45 0 2.05-1.35 3.15-3.05 3.15"/>
+  </g>
 </svg>
