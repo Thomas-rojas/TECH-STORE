@@ -115,8 +115,10 @@ export function ProductDetailPage() {
           { label: 'SKU', value: product.sku },
         ]
 
+  const productId = product.id
+
   function handleAdd() {
-    addItem(product.id, quantity)
+    addItem(productId, quantity)
     setAdded(true)
     window.setTimeout(() => setAdded(false), 1600)
     openCart()
