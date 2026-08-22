@@ -29,7 +29,7 @@ export function MainLayout() {
       <SearchOverlay />
       <CartDrawer />
       <AuthDialog />
-      <main key={pathname} className={isHome ? 'page-fade flex-1' : 'page-fade flex-1 pt-20'}>
+      <main key={pathname} className={isHome ? 'page-fade flex-1' : 'page-fade flex-1 pt-[4.5rem] sm:pt-[4.75rem] lg:pt-20'}>
         <Outlet />
       </main>
       <Footer />

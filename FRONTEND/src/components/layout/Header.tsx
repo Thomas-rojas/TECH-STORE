@@ -99,15 +99,15 @@ export function Header() {
         tabIndex={openSlug ? 0 : -1}
         onClick={() => setOpenSlug(null)}
       />
-      <div className="relative z-50 mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3">
+      <div className="relative z-50 mx-auto flex h-[4.5rem] max-w-7xl items-center px-4 sm:h-[4.75rem] sm:px-6 lg:h-20 lg:px-8">
+        <div className="flex min-w-0 items-center gap-3">
           <button
             type="button"
-            className="text-ink-500 transition duration-200 hover:text-ink-800 lg:hidden"
+            className="shrink-0 text-ink-500 transition duration-200 hover:text-ink-800 lg:hidden"
             onClick={openMobileNav}
             aria-label="Abrir menú"
           >
-            <MenuIcon />
+            <MenuIcon className="size-6" />
           </button>
           <Logo />
         </div>
@@ -117,7 +117,7 @@ export function Header() {
           className="pointer-events-none absolute inset-x-0 hidden justify-center lg:flex"
           onMouseLeave={scheduleNavClose}
         >
-          <div className="pointer-events-auto flex items-center gap-2" onMouseEnter={() => window.clearTimeout(closeTimer.current)}>
+          <div className="pointer-events-auto flex items-center gap-3" onMouseEnter={() => window.clearTimeout(closeTimer.current)}>
             {NAV_DEPARTMENTS.map((department) => {
               const isOpen = openSlug === department.slug
               return (
@@ -132,14 +132,14 @@ export function Header() {
                     aria-haspopup="menu"
                     onClick={() => setOpenSlug(isOpen ? null : department.slug)}
                     className={cn(
-                      'text-ui flex items-center gap-0.5 px-1.5 py-2 text-[12px] tracking-wide transition duration-300 sm:px-2',
+                      'text-ui flex items-center gap-1 px-2 py-2.5 text-[15px] tracking-wide transition duration-300 lg:px-2.5 lg:text-base',
                       isOpen ? 'text-ink-800' : 'text-ink-500 hover:text-peri-600',
                     )}
                   >
                     {department.label}
                     <ChevronIcon
                       direction="down"
-                      className={cn('size-3.5 opacity-70 transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]', isOpen && 'rotate-180')}
+                      className={cn('size-4 opacity-70 transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]', isOpen && 'rotate-180')}
                     />
                   </button>
 
@@ -178,7 +178,7 @@ export function Header() {
           </div>
         </nav>
 
-        <div className="ml-auto flex items-center gap-3 sm:gap-5">
+        <div className="ml-auto flex shrink-0 items-center gap-3 sm:gap-5">
           <ThemeToggle />
           <button
             type="button"
@@ -186,7 +186,7 @@ export function Header() {
             className="text-ink-500 transition duration-200 hover:text-peri-600"
             aria-label="Buscar"
           >
-            <SearchIcon />
+            <SearchIcon className="size-6" />
           </button>
           <button
             type="button"
@@ -194,7 +194,7 @@ export function Header() {
             className="relative text-ink-500 transition duration-200 hover:text-peri-600"
             aria-label="Carrito"
           >
-            <BagIcon />
+            <BagIcon className="size-6" />
             {itemCount > 0 ? (
               <span className="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-lima shadow-[0_0_10px_rgb(223_247_65_/_0.8)]" />
             ) : null}
@@ -212,7 +212,7 @@ export function Header() {
               className="text-ink-500 transition duration-200 hover:text-peri-600"
               aria-label={session ? 'Mi cuenta' : 'Iniciar sesión'}
             >
-              <UserIcon />
+              <UserIcon className="size-6" />
             </button>
             <div
               className={cn(
