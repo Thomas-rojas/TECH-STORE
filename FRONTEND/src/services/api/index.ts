@@ -1,0 +1,6 @@
+export { apiClient } from '@/services/api/client'
+export { authService } from '@/services/api/auth.service'
+export { categoriesService } from '@/services/api/categories.service'
+export { paymentsService } from '@/services/api/payments.service'
+export { productsService } from '@/services/api/products.service'
+export { pickWholesaleRule, quoteWholesale } from '@/services/api/wholesale-pricing'
